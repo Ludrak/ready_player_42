@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chainplaceholder.png-011a2a3d75de7a3a1d4ff7c2f8638ab0.stex"
+path="res://.import/personnage1V2.png-9cf1745a6db941c3ed2740ab081b84a1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Assets/chainplaceholder.png"
-dest_files=[ "res://.import/chainplaceholder.png-011a2a3d75de7a3a1d4ff7c2f8638ab0.stex" ]
+source_file="res://Resources/Assets/personnage1V2.png"
+dest_files=[ "res://.import/personnage1V2.png-9cf1745a6db941c3ed2740ab081b84a1.stex" ]
 
 [params]
 
