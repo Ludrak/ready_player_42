@@ -8,16 +8,30 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Chunk",
+"language": "GDScript",
+"path": "res://Sources/Chunk.gd"
+} ]
 _global_script_class_icons={
-
+"Chunk": ""
 }
 
 [application]
 
 config/name="ready_player_42"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/resizable=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 environment/default_environment="res://default_env.tres"
