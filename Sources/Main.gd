@@ -1,6 +1,6 @@
 extends Node2D
 
-export (PackedScene) var max_jumps_decorator = preload("res://Scenes/Game Objects/MaxJumpsDecorator.tscn") 
+export (PackedScene) var max_jumps_decorator = preload("res://Scenes/Game Objects/Attributes/MaxJumpsDecorator.tscn") 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
