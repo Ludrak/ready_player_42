@@ -1,4 +1,4 @@
-extends "res://Sources/Attribute.gd"
+extends "res://Sources/Attributes/Attribute.gd"
 
 var decoratee
 

@@ -12,7 +12,7 @@ var velocity = Vector2.ZERO
 var jumps = 0
 
 var	jumping = false
-export (int) var	MAX_JUMP_DELAY = 20
+export (int) var		MAX_JUMP_DELAY = 20
 var					current_jump_delay = 0
 
 func can_jump():
@@ -61,7 +61,7 @@ func _physics_process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("'Player' entered the scene!")
+	print("'", name, "' entered the scene!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

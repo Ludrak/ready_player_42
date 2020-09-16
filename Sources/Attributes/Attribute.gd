@@ -11,5 +11,5 @@ func get_amount():
 	return amount
 
 func _ready():
-	print("'Attribute' entered the scene")
+	print("'", name, "' entered the scene!")
 

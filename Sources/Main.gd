@@ -4,7 +4,8 @@ export (PackedScene) var max_jumps_decorator = preload("res://Scenes/Game Object
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Entered 'Main' scene!")
+	print("Entered '", name, "' scene!")
+	$Camera.target = $Player
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

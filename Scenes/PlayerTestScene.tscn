@@ -58,5 +58,6 @@ position = Vector2( 712, 312 )
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 680, 328 )
 current = true
+process_mode = 0
 script = ExtResource( 4 )
 [connection signal="body_entered" from="PowerUp" to="." method="_on_PowerUp_body_entered"]
