@@ -19,6 +19,11 @@ config/name="ready_player_42"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1980
+window/size/height=1080
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
