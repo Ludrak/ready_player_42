@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sources/Main.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Game Objects/PowerUps/PowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Game Objects/Cameras/CameraFollow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Game Objects/Enemies/Enemy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 10 )
@@ -20,7 +21,7 @@ width = 200
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 520, 400 )
+position = Vector2( 521, 400 )
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2( 864, 504 )
@@ -57,4 +58,7 @@ position = Vector2( 712, 312 )
 
 [node name="CameraFollow" parent="." instance=ExtResource( 4 )]
 position = Vector2( 512, 300 )
+
+[node name="Enemy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 812.885, 435.426 )
 [connection signal="body_entered" from="PowerUp" to="." method="_on_PowerUp_body_entered"]

@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-export (int) var	FRICTION_LEVEL = 0.9999
-export (int) var	SPEED = 30000
+export (int) var	FRICTION_LEVEL = 0.94
+export (int) var	SPEED = 400
 
-export (int) var	jump_speed = 400
-export (int) var	gravity = 1200
+export (int) var	jump_speed = 500
+export (int) var	gravity = 100
 
 onready var attributes = $Attributes
 
@@ -50,11 +50,10 @@ func _physics_process(delta):
 	# Get input
 	get_input()
 	# Apply gravity
-	velocity.y += gravity * delta
-	velocity.x *= delta
+	velocity.y += gravity
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
 	# Move
-	velocity = move_and_slide(velocity, Vector2(1, -1))
+	velocity = move_and_slide(velocity, Vector2(0, -1))
 	# Update jump state
 	if jumps > 0 and is_on_floor():
 		jumps = 0
