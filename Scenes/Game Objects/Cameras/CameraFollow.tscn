@@ -3,7 +3,6 @@
 [ext_resource path="res://Sources/CameraFollow.gd" type="Script" id=1]
 
 [node name="CameraFollow" type="Camera2D"]
-position = Vector2( 680, 328 )
 current = true
 process_mode = 0
 script = ExtResource( 1 )
