@@ -9,6 +9,8 @@ export (int) var attack_speed = 200
 export (int) var fov = 90
 export (int) var view_distance = 1000
 
+export (PackedScene) var loot = preload("res://Scenes/Game Objects/Loot/Loot.tscn")
+
 onready var enemy = get_parent().get_node("Player") setget set_enemy
 
 var velocity = Vector2.ZERO
@@ -61,3 +63,11 @@ func _physics_process(delta):
 
 	# Perform movement
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+
+func kill(enemy):
+	print("'", name, "' was killed by '", enemy.name, "'!")
+	queue_free()
+	var drop = loot.instance()
+	drop.position = position
+	print("Dropping '", drop.name, "'!")
+	get_parent().add_child(drop)

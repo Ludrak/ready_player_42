@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sources/Main.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Game Objects/PowerUps/PowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Game Objects/Cameras/CameraFollow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Game Objects/Enemies/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Game Objects/Enemies/Spike.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Game Objects/Attributes/MaxJumpsDecorator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Game Objects/PowerUps/WeaponPowerUp.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 100, 10 )
+extents = Vector2( 135.075, 10 )
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 1 )
@@ -21,10 +24,11 @@ width = 200
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 521, 400 )
+position = Vector2( 522.168, 431.532 )
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2( 864, 504 )
+collision_mask = 0
 __meta__ = {
 "_edit_group_": true
 }
@@ -33,13 +37,14 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Platform"]
-scale = Vector2( 1, 20 )
+position = Vector2( 0.386627, 0 )
+scale = Vector2( 1.34409, 20 )
 texture = SubResource( 3 )
 
 [node name="Platform2" type="StaticBody2D" parent="."]
 position = Vector2( 520, 500 )
+collision_mask = 0
 __meta__ = {
-"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -47,18 +52,27 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Platform2"]
-scale = Vector2( 1, 20 )
+position = Vector2( -2.28882e-05, 0 )
+scale = Vector2( 1.34022, 20 )
 texture = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="PowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 712, 312 )
+attribute_decorator = ExtResource( 7 )
+decorator_amount = 200
+attribute = "max_jumps"
 
 [node name="CameraFollow" parent="." instance=ExtResource( 4 )]
 position = Vector2( 512, 300 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 812.885, 435.426 )
-[connection signal="body_entered" from="PowerUp" to="." method="_on_PowerUp_body_entered"]
+
+[node name="Spike" parent="." instance=ExtResource( 6 )]
+position = Vector2( 692.918, 640.206 )
+collision_layer = 2
+collision_mask = 2147483649
+
+[node name="WeaponPowerUp" parent="." instance=ExtResource( 8 )]
+position = Vector2( 517.406, 165.245 )
+[connection signal="body_entered" from="PowerUp" to="PowerUp" method="_on_body_entered"]
