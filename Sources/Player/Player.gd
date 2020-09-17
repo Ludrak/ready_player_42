@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 export (int) var	FRICTION_LEVEL = 0.9999
-export (int) var	SPEED = 30000
+export (int) var	SPEED = 19000
 
-export (int) var	jump_speed = 400
-export (int) var	gravity = 1200
+export (int) var	jump_speed = 550
+export (int) var	gravity = 1700
 
 onready var attributes = $Attributes
 
@@ -27,6 +27,9 @@ func get_input():
 	var left = Input.is_action_pressed('ui_left')
 	
 	velocity.x /= 1 + FRICTION_LEVEL
+	
+	if (abs(velocity.x) < 0.001) :
+		velocity.x = 0
 
 	if right :
 		velocity.x = SPEED
@@ -48,16 +51,29 @@ func get_input():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	# Get input
-	get_input()
+	if !is_on_wall():
+		get_input()
 	# Apply gravity
-	velocity.y += gravity * delta
+	if !is_on_floor():
+		velocity.y += gravity * delta
 	velocity.x *= delta
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
 	# Move
-	velocity = move_and_slide(velocity, Vector2(1, -1))
+	#var motionY = Vector2(0, velocity.y) * delta
+	var motion = Vector2(velocity.x, velocity.y)# * delta
+	#var collision = move_and_collide(motion, true, true, false);
+	
+	#if (collision && collision.get_normal().angle() < 0.80):
+	#	move_and_collide(-motion, true, true, false)
+	
+	
+	velocity = move_and_slide(motion, Vector2(0, -1), false, 4, 0.80, false)
+	
 	# Update jump state
 	if jumps > 0 and is_on_floor():
 		jumps = 0
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

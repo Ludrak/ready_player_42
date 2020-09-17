@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ready_player_42"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/City.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -32,4 +32,5 @@ window/size/fullscreen=true
 
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
+environment/default_clear_color=Color( 0.231373, 0.352941, 0.482353, 1 )
 environment/default_environment="res://default_env.tres"

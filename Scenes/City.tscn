@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Game Objects/Cameras/CameraFollow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Assets/8-bit-pixel-art-city-2o-2560x1700.jpg" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( -213.268, -134.695 )
+
+[node name="CameraFollow" parent="." instance=ExtResource( 1 )]
+position = Vector2( 57.4858, 46.5381 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -1.33484, 0 )
+polygon = PoolVector2Array( -949.214, 130.447, -602.156, 130.447, -598.152, 290.628, -598.152, 290.628, -492.699, 286.623, -488.695, 386.736, -204.374, 389.406, -205.709, 360.039, -36.184, 361.374, -36.184, 143.795, 177.39, 147.8, 181.395, 321.329, 290.852, 322.664, 294.422, 585.151, 460.92, 584.31, 464.381, 102.415, 800.224, 101.762, 803.313, 628.941, -949.397, 622.695 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 1182.02, 257.048, 1182.02, 257.048, 1180.52, 672.079, 1576.07, 678.073, 1576.07, 191.123, 1397.77, 189.624, 1402.27, 254.051 )
+
+[node name="8-bit-pixel-art-city-2o-2560x1700" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 295.448, -238.567 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 70.9554, 39.8033 )

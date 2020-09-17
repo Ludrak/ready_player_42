@@ -4,15 +4,18 @@ const		POSITION_LERP_VALUE = 0.94
 const		IDLE_ZOOM_LERP = 0.01
 const		ZOOM_LERP = 0.03
 
-const		IDLE_ZOOM = 1.1
-const		MOVING_ZOOM = 1.9
-const		OUT_OF_BORDER_ZOOM = 2.5
+const		IDLE_ZOOM = 0.5
+const		MOVING_ZOOM = 0.7
+const		OUT_OF_BORDER_ZOOM = 1.2
 
 const		PLAYER_TOP_OFFSET = 100
 
 onready var target setget set_target
 
-func set_target(new_target):
+func	_ready():
+	set_target(self.get_parent().get_node("Player"))
+
+func	set_target(new_target):
 	target = new_target
 	print("Camera target changed to '", target.name, "'")
 
