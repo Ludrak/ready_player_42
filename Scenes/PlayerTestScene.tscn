@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sources/Main.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Game Objects/Enemies/Spike.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Game Objects/Attributes/MaxJumpsDecorator.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Game Objects/PowerUps/WeaponPowerUp.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Game Objects/Barrels/Barrel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 135.075, 10 )
@@ -24,7 +25,7 @@ width = 200
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 522.168, 431.532 )
+position = Vector2( 300.945, 430.223 )
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2( 864, 504 )
@@ -42,10 +43,10 @@ scale = Vector2( 1.34409, 20 )
 texture = SubResource( 3 )
 
 [node name="Platform2" type="StaticBody2D" parent="."]
-position = Vector2( 520, 500 )
+position = Vector2( 304.013, 492.146 )
 collision_mask = 0
 __meta__ = {
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
@@ -57,7 +58,7 @@ scale = Vector2( 1.34022, 20 )
 texture = SubResource( 3 )
 
 [node name="PowerUp" parent="." instance=ExtResource( 3 )]
-position = Vector2( 712, 312 )
+position = Vector2( 410.927, 306.764 )
 attribute_decorator = ExtResource( 7 )
 decorator_amount = 200
 attribute = "max_jumps"
@@ -66,13 +67,16 @@ attribute = "max_jumps"
 position = Vector2( 512, 300 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 812.885, 435.426 )
+position = Vector2( 765.205, 442.347 )
 
 [node name="Spike" parent="." instance=ExtResource( 6 )]
-position = Vector2( 692.918, 640.206 )
+position = Vector2( 584.27, 657.223 )
 collision_layer = 2
 collision_mask = 2147483649
 
 [node name="WeaponPowerUp" parent="." instance=ExtResource( 8 )]
 position = Vector2( 517.406, 165.245 )
+
+[node name="Barrel" parent="." instance=ExtResource( 9 )]
+position = Vector2( 976.649, 435.239 )
 [connection signal="body_entered" from="PowerUp" to="PowerUp" method="_on_body_entered"]

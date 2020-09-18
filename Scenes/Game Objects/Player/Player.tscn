@@ -7,9 +7,8 @@
 [ext_resource path="res://Resources/Assets/run tmpl.jpg" type="Texture" id=5]
 [ext_resource path="res://Resources/Assets/player.png" type="Texture" id=6]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 39.3052
-height = 104.296
+[sub_resource type="CircleShape2D" id=3]
+radius = 49.2478
 
 [sub_resource type="Animation" id=2]
 resource_name = "run"
@@ -20,7 +19,7 @@ tracks/0/path = NodePath("Skeleton2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -44,7 +43,7 @@ tracks/2/path = NodePath("Skeleton2D/Hip/Chest/ArmR_top/ArmR_bottom:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -68,7 +67,7 @@ tracks/4/path = NodePath("Skeleton2D/Hip/Chest/ArmR_top:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -92,7 +91,7 @@ tracks/6/path = NodePath("Skeleton2D/Hip/LegL_top:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
-tracks/6/enabled = true
+tracks/6/enabled = false
 tracks/6/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -116,7 +115,7 @@ tracks/8/path = NodePath("Skeleton2D/Hip:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
-tracks/8/enabled = true
+tracks/8/enabled = false
 tracks/8/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -140,7 +139,7 @@ tracks/10/path = NodePath("Skeleton2D/Hip/Chest/ArmL_top:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
-tracks/10/enabled = true
+tracks/10/enabled = false
 tracks/10/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -164,7 +163,7 @@ tracks/12/path = NodePath("Skeleton2D/Hip/Chest:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
-tracks/12/enabled = true
+tracks/12/enabled = false
 tracks/12/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -188,7 +187,7 @@ tracks/14/path = NodePath("Skeleton2D/Hip/LegR_top/LegR_bottom:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
-tracks/14/enabled = true
+tracks/14/enabled = false
 tracks/14/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -212,7 +211,7 @@ tracks/16/path = NodePath("Skeleton2D/Hip/LegR_top:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
-tracks/16/enabled = true
+tracks/16/enabled = false
 tracks/16/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -236,7 +235,7 @@ tracks/18/path = NodePath("Skeleton2D/Hip/Chest/ArmL_top/ArmL_bottom:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
-tracks/18/enabled = true
+tracks/18/enabled = false
 tracks/18/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -260,7 +259,7 @@ tracks/20/path = NodePath("Skeleton2D/Hip/Chest/ArmL_top/ArmL_bottom/HandL:posit
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
-tracks/20/enabled = true
+tracks/20/enabled = false
 tracks/20/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -284,7 +283,7 @@ tracks/22/path = NodePath("Skeleton2D/Hip/LegR_top/LegR_bottom/FootR:position")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
-tracks/22/enabled = true
+tracks/22/enabled = false
 tracks/22/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -308,7 +307,7 @@ tracks/24/path = NodePath("Skeleton2D/Hip/LegL_top/LegL_bottom:position")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/imported = false
-tracks/24/enabled = true
+tracks/24/enabled = false
 tracks/24/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -332,7 +331,7 @@ tracks/26/path = NodePath("Skeleton2D/Hip/LegL_top/LegL_bottom/FootL:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/imported = false
-tracks/26/enabled = true
+tracks/26/enabled = false
 tracks/26/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -356,7 +355,7 @@ tracks/28/path = NodePath("Skeleton2D/Hip/Chest/ArmR_top/ArmR_bottom/HandR:posit
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/imported = false
-tracks/28/enabled = true
+tracks/28/enabled = false
 tracks/28/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -380,7 +379,7 @@ tracks/30/path = NodePath("Skeleton2D/Hip/Chest/Head:position")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/imported = false
-tracks/30/enabled = true
+tracks/30/enabled = false
 tracks/30/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -402,16 +401,14 @@ tracks/31/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2147483650
-collision_mask = 13
+collision_mask = 45
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -1.04201, -90.2582 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
+position = Vector2( -2, 0 )
 scale = Vector2( 0.173397, 0.173397 )
 texture = ExtResource( 1 )
 
@@ -432,6 +429,7 @@ scale = Vector2( 0.401608, 0.401608 )
 texture = ExtResource( 5 )
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+visible = false
 position = Vector2( 2.8343, -1.72012 )
 scale = Vector2( 0.25, 0.25 )
 __meta__ = {
@@ -554,6 +552,7 @@ __meta__ = {
 }
 
 [node name="Polygons" type="Node2D" parent="."]
+visible = false
 modulate = Color( 0.996078, 0.996078, 0.996078, 1 )
 position = Vector2( 123.683, -130.728 )
 scale = Vector2( 0.25, 0.25 )

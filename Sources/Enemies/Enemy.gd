@@ -29,8 +29,9 @@ func _ready():
 	print("'", name, "' entered the scene!")
 
 func flip():
-	direction *= flip_vector
+	direction.x *= -1
 	$FloorRayCast.cast_to *= flip_vector
+	$WallRayCast.cast_to *= flip_vector
 	$Sprite.flip_h = !$Sprite.flip_h
 
 # TODO: Optimization
@@ -52,7 +53,7 @@ func _physics_process(delta):
 
 	# Handle behaviour
 	if state == IDLE:
-		if !$FloorRayCast.is_colliding():
+		if !$FloorRayCast.is_colliding() or $WallRayCast.is_colliding():
 			flip()
 		velocity.x = direction.x * idle_speed
 	elif state == ATTACK:
@@ -64,8 +65,8 @@ func _physics_process(delta):
 	# Perform movement
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
-func kill(enemy):
-	print("'", name, "' was killed by '", enemy.name, "'!")
+func kill(killer):
+	print("'", name, "' was killed by '", killer.name, "'!")
 	queue_free()
 	var drop = loot.instance()
 	drop.position = position

@@ -12,7 +12,7 @@ radius = 65.2617
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 35
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -23,6 +23,11 @@ texture = ExtResource( 1 )
 enabled = true
 cast_to = Vector2( 50, 80 )
 collide_with_areas = true
+
+[node name="WallRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 60, 20 )
+collision_mask = 37
 
 [node name="PlayerRayCast" type="RayCast2D" parent="."]
 enabled = true

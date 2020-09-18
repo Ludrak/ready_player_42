@@ -101,8 +101,8 @@ func _physics_process(delta):
 func _ready():
 	print("'", name, "' entered the scene!")
 
-func kill(enemy):
-	print("Killed by '", enemy.name, "'!")
+func kill(killer: Node):
+	print("Killed by '", killer.name, "'!")
 	
 	#queue_free()
 

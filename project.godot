@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ready_player_42"
-run/main_scene="res://Scenes/City.tscn"
+run/main_scene="res://Scenes/PlayerTestScene.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -43,6 +43,7 @@ ui_use_weapon={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="objects"
 2d_physics/layer_5="loot"
+2d_physics/layer_6="container"
 
 [rendering]
 
