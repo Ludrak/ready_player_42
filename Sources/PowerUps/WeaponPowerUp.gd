@@ -1,3 +1,5 @@
+tool
+
 extends Node2D
 
 export (PackedScene) var weapon = preload("res://Scenes/Game Objects/Weapons/Weapon.tscn")

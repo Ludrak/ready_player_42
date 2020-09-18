@@ -2,6 +2,7 @@ extends Node2D
 
 const Cooldown = preload("res://Sources/Cooldown.gd")
 
+export (int) var bullet_count = 10
 export (int) var bullet_range = 10000
 export (bool) var enabled = false setget set_enabled
 export (bool) var follow_mouse = false setget set_follow_mouse
@@ -17,12 +18,16 @@ func set_enabled(new_enabled):
 func set_follow_mouse(new_follow_mouse):
 	follow_mouse = new_follow_mouse
 
+func can_shoot():
+	var bullets_left = bullet_count == -1 or bullet_count > 0
+	return bullets_left and shoot_cooldown.is_ready()
+
 func shoot(target):
-	if shoot_cooldown.is_ready():
+	if can_shoot():
 		var rel_target = target - $Bullet.global_position
 		var distance = rel_target.length()
 		var direction = rel_target / distance
-	
+
 		if (distance < bullet_range):
 			$Bullet.fire(rel_target)
 		else:
@@ -34,6 +39,8 @@ func _ready():
 
 func _process(delta):
 	if follow_mouse:
-		$Sprite.look_at(get_global_mouse_position())
+		var mouse_pos = get_global_mouse_position()
+		$Sprite.look_at(mouse_pos)
+		#$Sprite.flip_h = mouse_pos.x < global_position.x
 	if enabled:
 		shoot_cooldown.tick(delta)
