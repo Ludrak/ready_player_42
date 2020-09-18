@@ -10,14 +10,14 @@ const		OUT_OF_BORDER_ZOOM = 1.2
 
 const		PLAYER_TOP_OFFSET = 100
 
-onready var target setget set_target
+onready var target = get_parent().get_node("Player") setget set_target
 
 func	_ready():
-	set_target(self.get_parent().get_node("Player"))
+	print("'", name, "' entered the scene!")
 
 func	set_target(new_target):
 	target = new_target
-	print("Camera target changed to '", target.name, "'")
+	print("'", name, "' target changed to '", target.name, "'!")
 
 func	_physics_process(delta):
 	if target != null:

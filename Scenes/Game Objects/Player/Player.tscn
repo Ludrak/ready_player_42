@@ -7,7 +7,7 @@
 [ext_resource path="res://Resources/Assets/run tmpl.jpg" type="Texture" id=5]
 [ext_resource path="res://Resources/Assets/player.png" type="Texture" id=6]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 49.2478
 
 [sub_resource type="Animation" id=2]
@@ -405,7 +405,7 @@ collision_mask = 45
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2, 0 )

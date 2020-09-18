@@ -6,6 +6,7 @@ export (float) var amount = 0 setget set_amount, get_amount
 
 func set_amount(new_amount):
 	amount = new_amount
+	emit_signal("amount_changed", amount)
 
 func get_amount():
 	return amount

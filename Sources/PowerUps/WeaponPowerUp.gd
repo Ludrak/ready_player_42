@@ -2,11 +2,13 @@ tool
 
 extends Node2D
 
-export (PackedScene) var weapon = preload("res://Scenes/Game Objects/Weapons/Weapon.tscn")
+export (PackedScene) var weapon = preload("res://Scenes/Game Objects/Weapons/FireArm.tscn")
 
-var weapon_instance = weapon.instance()
+onready var weapon_instance = weapon.instance()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("'", name, "' entered the scene!")
 	add_child(weapon_instance)
 
 

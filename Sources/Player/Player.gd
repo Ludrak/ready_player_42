@@ -25,7 +25,10 @@ func set_weapon(new_weapon):
 		remove_child(weapon)
 		weapon.queue_free()
 	weapon = new_weapon
-	weapon.enabled = true
+	if weapon.get("enabled") != null:
+		weapon.enabled = true
+	else:
+		print("Warning: '", weapon.name, "' has no 'enabled' attribute!")
 	add_child(weapon)
 
 func set_coins(new_coins):
@@ -63,7 +66,10 @@ func get_input():
 		current_jump_delay += 1
 	
 	if shoot and can_shoot():
-		weapon.shoot(get_global_mouse_position())
+		if weapon.has_method("shoot"):
+			weapon.shoot(get_global_mouse_position())
+		else:
+			print("Warning: '", weapon.name, "' has no 'shoot' method!")
 
 	if (jumping && !jump) || (current_jump_delay > MAX_JUMP_DELAY) :
 		jumps+=1

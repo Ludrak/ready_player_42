@@ -12,4 +12,4 @@ func kill(killer: Node):
 	var drop = loot.instance()
 	drop.position = position
 	print("Dropping '", drop.name, "'!")
-	get_parent().add_child(drop)
+	get_parent().call_deferred('add_child', drop)
