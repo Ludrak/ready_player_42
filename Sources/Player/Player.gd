@@ -140,7 +140,7 @@ func kill(killer: Node):
 func _process(delta):
 	if (!jumping && velocity.length() > 0 && jumps == 0) :
 		if (!falling) :
-			$AnimationPlayer.play("run", -1, 2.5, false)
+			$AnimationPlayer.play("run_new", -1, 2.5, false)
 		else :
 			$AnimationPlayer.play("jump_end", -1, 2.5, false)
 		falling = false

@@ -21,29 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="ready_player_42"
-run/main_scene="res://Scenes/PlayerTestScene.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/fullscreen=true
-
-[input]
-
-ui_use_weapon={
-"deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
- ]
-}
-
-[layer_names]
-
-2d_physics/layer_1="walls"
-2d_physics/layer_2="player"
-2d_physics/layer_3="enemies"
-2d_physics/layer_4="objects"
-2d_physics/layer_5="loot"
-2d_physics/layer_6="container"
 
 [rendering]
 

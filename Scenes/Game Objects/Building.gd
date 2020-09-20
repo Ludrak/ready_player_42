@@ -1,3 +1,5 @@
+tool
+
 extends Node2D
 
 export (int) var		size_x = 4;
