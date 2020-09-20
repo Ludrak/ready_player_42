@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Assets/coin_reflecting.png" type="Texture" id=1]
 [ext_resource path="res://Sources/Loot/Loot.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Assets/light2.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.5
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 175.0
+radius = 407.228
 
 [sub_resource type="CircleShape2D" id=3]
 
@@ -39,5 +40,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
 shape = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0.890869, 2.6727 )
+scale = Vector2( 0.532278, 0.532278 )
+texture = ExtResource( 3 )
 [connection signal="body_entered" from="AttractionArea" to="." method="_on_AttractionArea_body_entered"]
 [connection signal="body_entered" from="PickUpArea" to="." method="_on_PickUpArea_body_entered"]

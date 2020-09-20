@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/World Assets/StorageContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/World Assets/Plateform.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/World Assets/Barrel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Effects/Explosion.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/World Assets/ExplosiveBarrel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Game Objects/PowerUps/WeaponPowerUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Game Objects/Weapons/FireArm.tscn" type="PackedScene" id=11]
 
@@ -53,10 +53,12 @@ position = Vector2( 2576.01, 648.541 )
 position = Vector2( 1491.63, -498.346 )
 weapon = ExtResource( 11 )
 
-[node name="Barrel" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2178.23, 411.919 )
-loot = ExtResource( 9 )
+[node name="ExplosiveBarrel" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1977.57, 427.097 )
 
-[node name="Barrel2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2309.04, 416.676 )
-loot = ExtResource( 9 )
+[node name="ExplosiveBarrel2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2077.69, 428.431 )
+
+[node name="Barrel" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2468.8, -52.1109 )
+rotation = -0.653322

@@ -5,8 +5,8 @@ export (String) var attribute = "coins"
 
 var magnetic_target = null setget set_magnetic_target
 
-var magnetic_force_self = 1000
-var magnetic_force_target = 1000
+var magnetic_force_self = 2000
+var magnetic_force_target = 2000
 var magnetic_factor = -300
 
 var magnetic_force = magnetic_factor * magnetic_force_self * magnetic_force_self
@@ -36,9 +36,11 @@ func _on_PickUpArea_body_entered(body):
 	else:
 		print("Warning: '", body.name, "' doesn't have the '", attribute, "' attribute!")
 
+
 func _physics_process(delta):
 	pass
 
+var	x = 0
 func _integrate_forces(state):
 	var delta = state.step
 
@@ -52,4 +54,6 @@ func _integrate_forces(state):
 		var direction = to_target / distance
 
 		magneticity = direction * (-1 * magnetic_force / (distance * distance))
-	state.linear_velocity = (velocity + magneticity + gravity) * delta
+	state.linear_velocity = (velocity + magneticity - (gravity * ((sin (x)) * 40 * delta - 0.2))) * delta
+	x += 5 *  delta
+	print (state.linear_velocity)
