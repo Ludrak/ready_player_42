@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/Assets/hiclipart.com.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Assets/smoke.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Effects/Explosion.gd" type="Script" id=3]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0, 0.272727 ), 3.77203, 3.77203, 0, 0, Vector2( 0.235632, 0.429545 ), 0.0, 0.0, 0, 0, Vector2( 0.936782, 0.665909 ), 0.441438, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.0860927, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00574712, 0.445455 ), 0.0, 0.499522, 0, 0, Vector2( 0.103448, 1 ), -2.20079, -2.20079, 0, 0, Vector2( 1, 0 ), 0.387993, 0.0, 0, 0 ]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 211.656
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Smoke" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 31.27
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.36
+randomness = 0.8
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 67.17
+direction = Vector2( 100, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 118.27
+angle_random = 1.0
+scale_amount = 0.6
+scale_amount_curve = SubResource( 3 )
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource( 4 )

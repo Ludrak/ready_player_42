@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Game Objects/Building.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Game Objects/Cameras/CameraFollow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Game Objects/PowerUps/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Assets/8-bit-pixel-art-city-2o-2560x1700.jpg" type="Texture" id=5]
+[ext_resource path="res://Scenes/World Assets/StorageContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/World Assets/Plateform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/World Assets/Barrel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Effects/Explosion.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Game Objects/PowerUps/WeaponPowerUp.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Game Objects/Weapons/FireArm.tscn" type="PackedScene" id=11]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,6 +19,7 @@
 [node name="8-bit-pixel-art-city-2o-2560x1700" type="Sprite" parent="CameraFollow"]
 position = Vector2( -1.71899, 44.9521 )
 scale = Vector2( 3, 3 )
+z_index = -10
 texture = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
@@ -21,6 +28,16 @@ texture = ExtResource( 5 )
 visible = false
 position = Vector2( 1929.44, 159.672 )
 
+[node name="StorageContainer" parent="." instance=ExtResource( 6 )]
+position = Vector2( 888.717, -178.221 )
+rotation = -0.765148
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Container" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1346.92, 181.664 )
+rotation = 0.403474
+scale = Vector2( 0.3, 0.3 )
+
 [node name="Node2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( -277.8, 208.283 )
 scale = Vector2( 3, 3 )
@@ -28,3 +45,18 @@ scale = Vector2( 3, 3 )
 [node name="Node2D2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1510.01, 478.655 )
 scale = Vector2( 3, 3 )
+
+[node name="Plateform" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2576.01, 648.541 )
+
+[node name="WeaponPowerUp" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1491.63, -498.346 )
+weapon = ExtResource( 11 )
+
+[node name="Barrel" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2178.23, 411.919 )
+loot = ExtResource( 9 )
+
+[node name="Barrel2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2309.04, 416.676 )
+loot = ExtResource( 9 )

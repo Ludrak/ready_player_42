@@ -2397,13 +2397,13 @@ rest = Transform2D( 1, 0, 0, 1, 9.45117, -76.4997 )
 [node name="Head" type="Bone2D" parent="Node2D/Skeleton2D/Hip/Chest"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( -19.8332, -67.5045 )
-rotation = 0.784555
+rotation = 0.558172
 rest = Transform2D( 0.842416, 0.538828, -0.538828, 0.842416, -23.2463, -75.0574 )
 
 [node name="ArmR_top" type="Bone2D" parent="Node2D/Skeleton2D/Hip/Chest"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( -49.4293, -21.6553 )
-rotation = 2.55066
+rotation = 1.77819
 rest = Transform2D( 0.0324984, 0.999472, -0.999472, 0.0324984, -49.4293, -21.6553 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2413,7 +2413,7 @@ __meta__ = {
 [node name="ArmR_bottom" type="Bone2D" parent="Node2D/Skeleton2D/Hip/Chest/ArmR_top"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 63.3615, 3.89983 )
-rotation = -0.645889
+rotation = -0.446385
 rest = Transform2D( 1, 0, 0, 1, 63.3615, 3.89983 )
 __meta__ = {
 "_edit_bone_": true
@@ -2431,7 +2431,7 @@ __meta__ = {
 [node name="ArmL_top" type="Bone2D" parent="Node2D/Skeleton2D/Hip/Chest"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 18.2365, -34.9008 )
-rotation = -1.13235
+rotation = -0.774764
 rest = Transform2D( 0.997368, -0.0725095, 0.0725095, 0.997368, 18.2365, -34.9008 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2441,7 +2441,7 @@ __meta__ = {
 [node name="ArmL_bottom" type="Bone2D" parent="Node2D/Skeleton2D/Hip/Chest/ArmL_top"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 0.58674, 60.5927 )
-rotation = 0.576891
+rotation = 0.291084
 rest = Transform2D( 0.995731, 0.0923081, -0.0923081, 0.995731, 0.58674, 60.5927 )
 __meta__ = {
 "_edit_bone_": true
@@ -2459,7 +2459,7 @@ __meta__ = {
 [node name="LegL_top" type="Bone2D" parent="Node2D/Skeleton2D/Hip"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 14.0438, -2.12364 )
-rotation = -0.807014
+rotation = -0.98242
 rest = Transform2D( 1, 0, 0, 1, 14.0438, -2.12364 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2469,7 +2469,7 @@ __meta__ = {
 [node name="LegL_bottom" type="Bone2D" parent="Node2D/Skeleton2D/Hip/LegL_top"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 12.0254, 68.1182 )
-rotation = 1.3301
+rotation = 1.72315
 rest = Transform2D( 1, 0, 0, 1, 12.0254, 68.1182 )
 __meta__ = {
 "_edit_bone_": true
@@ -2478,7 +2478,7 @@ __meta__ = {
 [node name="FootL" type="Bone2D" parent="Node2D/Skeleton2D/Hip/LegL_top/LegL_bottom"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 4.42248, 58.143 )
-rotation = 0.0197913
+rotation = 0.322416
 rest = Transform2D( 1, 0, 0, 1, 4.42248, 58.143 )
 __meta__ = {
 "_edit_bone_": true
@@ -2487,7 +2487,7 @@ __meta__ = {
 [node name="LegR_top" type="Bone2D" parent="Node2D/Skeleton2D/Hip"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( -6.56012, 5.72998 )
-rotation = -0.231127
+rotation = -0.341495
 rest = Transform2D( 1, 0, 0, 1, -6.56012, 5.72998 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2497,7 +2497,7 @@ __meta__ = {
 [node name="LegR_bottom" type="Bone2D" parent="Node2D/Skeleton2D/Hip/LegR_top"]
 modulate = Color( 1, 1, 1, 0.337255 )
 position = Vector2( 1.64266, 71.6079 )
-rotation = 0.48037
+rotation = 1.00173
 rest = Transform2D( 1, 0, 0, 1, 1.64266, 71.6079 )
 __meta__ = {
 "_edit_bone_": true
