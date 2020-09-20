@@ -1,24 +1,41 @@
 extends KinematicBody2D
 
+export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999
-export (int) var	SPEED = 19000
+export (int) var	SPEED =  27000 # 23000
 
-export (int) var	jump_speed = 550
-export (int) var	gravity = 1700
+export (int) var	jump_speed = 1000
+export (int) var	gravity = 3000
 
 onready var attributes = $Attributes
+
+var	direction = "none"
 
 var velocity = Vector2.ZERO
 var jumps = 0
 
+onready var	old_facing = self.get_scale().x
+onready var	facing = old_facing
+
 var	jumping = false
+var	falling = false
+
 export (int) var		MAX_JUMP_DELAY = 20
 var					current_jump_delay = 0
 
 func can_jump():
 	return jumps < attributes.max_jumps.amount
 
-func get_input():
+func set_facing( dir ):
+	facing = dir
+	if old_facing != facing:
+		if (old_facing < 0) :
+			set_scale(Vector2( -1, -1 ))
+		else :
+			set_scale(Vector2( -1 , 1 ))
+		old_facing = facing
+
+func get_input(delta):
 	velocity.x = 0
 	
 	# Key States
@@ -31,10 +48,15 @@ func get_input():
 	if (abs(velocity.x) < 0.001) :
 		velocity.x = 0
 
+	##	NEED TO LERP
+	##	TO SPEED
 	if right :
-		velocity.x = SPEED
+		velocity.x = SPEED#velocity.linear_interpolate(Vector2(SPEED, 0), LERP_TO_FULLSPEED).x #velocity.slerp(Vector2(SPEED, velocity.y), LERP_TO_FULLSPEED * delta)
+		set_facing(1)
 	elif left :
-		velocity.x = -SPEED
+		velocity.x = -SPEED#velocity.linear_interpolate(Vector2(-SPEED, 0), LERP_TO_FULLSPEED).x #velocity.slerp(Vector2(SPEED, velocity.y), LERP_TO_FULLSPEED * delta)
+		set_facing(-1)
+
 
 	if jump and can_jump():
 		velocity.y = -jump_speed
@@ -52,7 +74,7 @@ func get_input():
 func _physics_process(delta):
 	# Get input
 	if !is_on_wall():
-		get_input()
+		get_input(delta)
 	# Apply gravity
 	if !is_on_floor():
 		velocity.y += gravity * delta
@@ -65,10 +87,10 @@ func _physics_process(delta):
 	
 	#if (collision && collision.get_normal().angle() < 0.80):
 	#	move_and_collide(-motion, true, true, false)
-	
-	
+
+
 	velocity = move_and_slide(motion, Vector2(0, -1), false, 4, 0.80, false)
-	
+
 	# Update jump state
 	if jumps > 0 and is_on_floor():
 		jumps = 0
@@ -78,7 +100,23 @@ func _physics_process(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("'", name, "' entered the scene!")
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if (!jumping && velocity.length() > 0 && jumps == 0) :
+		if (!falling) :
+			$AnimationPlayer.play("run", -1, 2.5, false)
+		else :
+			$AnimationPlayer.play("jump_end", -1, 2.5, false)
+		falling = false
+	elif jumping :
+		$AnimationPlayer.play("jump_start", -1, 2, false);
+	elif jumps > 0:
+		$AnimationPlayer.play("fall", -1, 2, false);
+		falling = true
+	else :
+		if (!falling) :
+			$AnimationPlayer.play("idle", -1, 1, false)
+		else :
+			$AnimationPlayer.play("jump_end", -1, 2.5, false)
+		falling = false
+	pass
