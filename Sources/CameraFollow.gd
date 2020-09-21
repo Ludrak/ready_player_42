@@ -9,7 +9,7 @@ const		IDLE_ZOOM = 1.2
 const		MOVING_ZOOM = 1.4
 const		OUT_OF_BORDER_ZOOM = 2
 
-const		PLAYER_TOP_OFFSET = 300
+const		PLAYER_TOP_OFFSET = 250
 
 onready var target = get_parent().get_node("Player") setget set_target
 

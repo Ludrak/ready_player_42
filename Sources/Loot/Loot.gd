@@ -17,6 +17,7 @@ func set_magnetic_target(new_magnetic_target):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print ("'Loot' enteed the scene !")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,4 +57,4 @@ func _integrate_forces(state):
 		magneticity = direction * (-1 * magnetic_force / (distance * distance))
 	state.linear_velocity = (velocity + magneticity - (gravity * ((sin (x)) * 40 * delta - 0.2))) * delta
 	x += 5 *  delta
-	print (state.linear_velocity)
+#	print (state.linear_velocity)

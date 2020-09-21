@@ -9,6 +9,8 @@ export (int) var	gravity = 98
 
 onready var attributes = $Attributes
 
+onready var spawn_pos = self.position
+
 var	direction = "none"
 
 var velocity = Vector2.ZERO
@@ -43,7 +45,7 @@ func set_coins(new_coins):
 	print("'", name, "' has ", coins, " coins!")
 
 func can_jump():
-	return jumps < attributes.max_jumps.amount
+	return jumps < attributes.max_jumps.amount and (jumping or is_on_floor())
 
 func set_facing( dir ):
 	facing = dir
@@ -68,12 +70,15 @@ func get_input():
 	
 	velocity.x /= 1 + FRICTION_LEVEL
 	
-	if (abs(velocity.x) < 0.001) :
-		velocity.x = 0
+	## NOT USEFULL
+	#if (abs(velocity.x) < 0.001) :
+	#	velocity.x = 0
 
 	##	NEED TO LERP
 	##	TO SPEED
-	if right :
+	if left and right:
+		pass
+	elif right :
 		velocity.x = SPEED#velocity.linear_interpolate(Vector2(SPEED, 0), LERP_TO_FULLSPEED).x #velocity.slerp(Vector2(SPEED, velocity.y), LERP_TO_FULLSPEED * delta)
 		set_facing(1)
 	elif left :
@@ -102,21 +107,12 @@ func get_input():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	# Get input
-	if !is_on_wall():
+	if !is_on_wall() or is_on_floor():
 		get_input()
 	# Apply gravity
-	if !is_on_floor():
+	if !is_on_floor() || is_on_wall():
 		velocity.y += gravity
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
-	# Move
-	#var motionY = Vector2(0, velocity.y) * delta
-	#var motion = Vector2(velocity.x, velocity.y)# * delta
-	#var collision = move_and_collide(motion, true, true, false);
-	
-	#if (collision && collision.get_normal().angle() < 0.80):
-	#	move_and_collide(-motion, true, true, false)
-
-
 	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
 
 	# Update jump state
@@ -124,28 +120,15 @@ func _physics_process(delta):
 		jumps = 0
 
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print("'", name, "' entered the scene!")
-
-	
-func kill(killer: Node):
-	print("Killed by '", killer.name, "'!")
-	
-	#queue_free()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if (!jumping && velocity.length() > 0 && jumps == 0) :
+	if (!jumping && self.velocity.length() > 0.1 && jumps == 0) :
 		if (!falling) :
-			$AnimationPlayer.play("run", -1, 2.5, false)
+			$AnimationPlayer.play("run", -1, 2, false)
 		else :
 			$AnimationPlayer.play("jump_end", -1, 2.5, false)
 		falling = false
-	elif jumping :
+	elif jumping:
 		$AnimationPlayer.play("jump_start", -1, 2, false);
+		$AnimationPlayer.get_animation("jump_start").loop = false
 	elif jumps > 0:
 		$AnimationPlayer.play("fall", -1, 2, true);
 		falling = true
@@ -155,4 +138,20 @@ func _process(delta):
 		else :
 			$AnimationPlayer.play("jump_end", -1, 2.5, false)
 		falling = false
+	pass
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print("'", name, "' entered the scene!")
+
+	
+func kill(killer: Node):
+	print("Killed by '", killer.name, "'!")
+	self.position = self.spawn_pos
+	#queue_free()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
 	pass
