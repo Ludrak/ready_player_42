@@ -1,10 +1,12 @@
 extends Node2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print("Entered '", name, "' scene!")
+export (PackedScene) var	player = preload("res://Scenes/Game Objects/Player/Player.tscn")
 
+func	_ready():
+	var p = player.instance()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	p.global_position = $SpawnPoint.global_position
+	p.set_name("Player")
+	add_child(p)
+	$CameraFollow.target = p
+	p.bullet_collector = $BulletCollector.get_path()

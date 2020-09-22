@@ -1,22 +1,37 @@
+tool
+
 extends KinematicBody2D
 
-export (int) var	FRICTION_LEVEL = 0.9999
-export (int) var	SPEED = 400
+export (NodePath) var		bullet_collector = "../BulletCollector"
 
-export (int) var	jump_speed = 550
-export (int) var	gravity = 100
+export (int) var	LERP_TO_FULLSPEED = 0.5
+export (int) var	FRICTION_LEVEL = 0.9999
+export (int) var	SPEED =  700 # 23000
+
+export (int) var	jump_speed = 1200
+export (int) var	gravity = 98
 
 onready var attributes = $Attributes
+
+onready var spawn_pos = self.position
+
+var	direction = "none"
 
 var velocity = Vector2.ZERO
 var jumps = 0
 
-var jumping = false
-export (int) var MAX_JUMP_DELAY = 20
-var current_jump_delay = 0
+onready var	old_facing = self.get_scale().x
+onready var	facing = old_facing
 
+var	jumping = false
+var	falling = false
+
+export (int) var		MAX_JUMP_DELAY = 20
+var					current_jump_delay = 0
 var weapon = null setget set_weapon
 var coins = 0 setget set_coins
+
+onready var	hand = $PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR
 
 func set_weapon(new_weapon):
 	print("Picked up '", new_weapon.name, "'!")
@@ -29,14 +44,29 @@ func set_weapon(new_weapon):
 		weapon.enabled = true
 	else:
 		print("Warning: '", weapon.name, "' has no 'enabled' attribute!")
-	add_child(weapon)
+		
+	weapon.position = hand.get_node("weapon").position
+	weapon.rotation = hand.get_node("weapon").rotation
+	weapon.scale = hand.get_node("weapon").scale
+	weapon.z_index = 1;
+	hand.add_child(weapon)
+	weapon.connect("fire_bullet", get_node(bullet_collector), "on_fire_bullet")
 
 func set_coins(new_coins):
 	coins = new_coins * attributes.coin_multiplicator.amount
 	print("'", name, "' has ", coins, " coins!")
 
 func can_jump():
-	return jumps < attributes.max_jumps.amount
+	return jumps < attributes.max_jumps.amount and (jumping or is_on_floor())
+
+func set_facing( dir ):
+	facing = dir
+	if old_facing != facing:
+		if (old_facing < 0) :
+			set_scale(Vector2( -1, -1 ))
+		else :
+			set_scale(Vector2( -1 , 1 ))
+		old_facing = facing
 
 func can_shoot():
 	return weapon != null
@@ -52,13 +82,21 @@ func get_input():
 	
 	velocity.x /= 1 + FRICTION_LEVEL
 	
-	if (abs(velocity.x) < 0.001) :
-		velocity.x = 0
+	## NOT USEFULL
+	#if (abs(velocity.x) < 0.001) :
+	#	velocity.x = 0
 
-	if right :
-		velocity.x = SPEED
+	##	NEED TO LERP
+	##	TO SPEED
+	if left and right:
+		pass
+	elif right :
+		velocity.x = SPEED#velocity.linear_interpolate(Vector2(SPEED, 0), LERP_TO_FULLSPEED).x #velocity.slerp(Vector2(SPEED, velocity.y), LERP_TO_FULLSPEED * delta)
+		set_facing(1)
 	elif left :
-		velocity.x = -SPEED
+		velocity.x = -SPEED#velocity.linear_interpolate(Vector2(-SPEED, 0), LERP_TO_FULLSPEED).x #velocity.slerp(Vector2(SPEED, velocity.y), LERP_TO_FULLSPEED * delta)
+		set_facing(-1)
+
 
 	if jump and can_jump():
 		velocity.y = -jump_speed
@@ -81,38 +119,57 @@ func get_input():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	# Get input
-	if !is_on_wall():
+	if !is_on_wall() or is_on_floor():
 		get_input()
 	# Apply gravity
-	if !is_on_floor():
+	if !is_on_floor() || is_on_wall():
 		velocity.y += gravity
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
-	# Move
-	#var motionY = Vector2(0, velocity.y) * delta
-	#var motion = Vector2(velocity.x, velocity.y)# * delta
-	#var collision = move_and_collide(motion, true, true, false);
-	
-	#if (collision && collision.get_normal().angle() < 0.80):
-	#	move_and_collide(-motion, true, true, false)
-	
 	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
-	
+
 	# Update jump state
 	if jumps > 0 and is_on_floor():
 		jumps = 0
 
+
+	if (!jumping && self.velocity.length() > 0.1 && jumps == 0) :
+		if (!falling) :
+			if (self.weapon) :
+				$AnimationPlayer.play("run weapon", -1, 1.3, false)
+			else :
+				$AnimationPlayer.play("run", -1, 1.3, false)
+		else :
+			$AnimationPlayer.play("jump_end", -1, 2.5, false)
+		falling = false
+	elif jumping:
+		$AnimationPlayer.play("jump_start", -1, 1, false);
+		$AnimationPlayer.get_animation("jump_start").loop = false
+	elif jumps > 0:
+		$AnimationPlayer.play("fall", -1, 2, true);
+		falling = true
+	else :
+		if (!falling) :
+			if (self.weapon):
+				$AnimationPlayer.play("idle weapon", -1, 1, false)
+			else:
+				$AnimationPlayer.play("idle", -1, 1, false)
+		else :
+			$AnimationPlayer.play("jump_end", -1, 2.5, false)
+		falling = false
+	pass
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("'", name, "' entered the scene!")
 
+	
 func kill(killer: Node):
 	print("Killed by '", killer.name, "'!")
-	
+	self.position = self.spawn_pos
 	#queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
