@@ -3,10 +3,19 @@ extends RigidBody2D
 export (PackedScene) var loot = preload("res://Scenes/Game Objects/Loot/Loot.tscn")
 
 export (int) var		loot_count = 4
+export (int) var		max_health = 75
+
+var						health = max_health
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("'", name, "' entered the scene!")
+	
+func	damage(damager: Node2D, amount: int):
+	self.health -= amount;
+	if (self.health < 0):
+		self.health = 0;
+		self.kill(damager)
 
 func kill(killer: Node):
 	print("'", name, "' was killed by '", killer.name, "'!")

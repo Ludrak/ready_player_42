@@ -2,6 +2,7 @@ tool
 
 extends Node2D
 
+export (int) var	explosion_force = 80
 
 export (bool) var	exploding = false setget set_exploding
 
@@ -22,6 +23,8 @@ func	explode():
 	
 func	kill_around():
 	for body in $DamageArea.get_overlapping_bodies() :
-		if (body.has_method("kill")):
+		if (body.has_method("damage")):
+			body.damage(self, explosion_force)
+		elif (body.has_method("kill")):
 			body.kill(self)
 	

@@ -2,9 +2,12 @@ extends Node
 
 #signal max_jumps_changed
 #signal coin_multiplicator_changed
-
+onready var	max_health = $MaxHealth setget set_max_health
 onready var max_jumps = $MaxJumps setget set_max_jumps
 onready var coin_multiplicator = $CoinMultiplicator setget set_coin_multiplicator
+
+func set_max_health(value):
+	max_health = value;
 
 func set_max_jumps(new_max_jumps):
 	max_jumps = new_max_jumps

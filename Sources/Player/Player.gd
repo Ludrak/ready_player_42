@@ -1,4 +1,3 @@
-tool
 
 extends KinematicBody2D
 
@@ -12,6 +11,8 @@ export (int) var	jump_speed = 1200
 export (int) var	gravity = 98
 
 onready var attributes = $Attributes
+
+onready var		health = attributes.max_health.amount
 
 onready var spawn_pos = self.position
 
@@ -96,6 +97,11 @@ func get_input():
 	elif left :
 		velocity.x = -SPEED#velocity.linear_interpolate(Vector2(-SPEED, 0), LERP_TO_FULLSPEED).x #velocity.slerp(Vector2(SPEED, velocity.y), LERP_TO_FULLSPEED * delta)
 		set_facing(-1)
+		
+	#if (shoot && get_viewport().get_mouse_position().x > get_viewport().size.x / 2) && !right && !left:
+#	set_facing(1)
+	#else:
+	#	set_facing(-1)
 
 
 	if jump and can_jump():
@@ -105,7 +111,7 @@ func get_input():
 	
 	if shoot and can_shoot():
 		if weapon.has_method("shoot"):
-			weapon.shoot(get_global_mouse_position())
+			weapon.shoot(get_global_mouse_position(), self)
 		else:
 			print("Warning: '", weapon.name, "' has no 'shoot' method!")
 
@@ -163,8 +169,13 @@ func _physics_process(delta):
 func _ready():
 	print("'", name, "' entered the scene!")
 
+func	damage(damager: Node, amount: int):
+	self.health -= amount;
+	if (self.health >= 0):
+		self.health = 0
+		self.kill(damager)
 	
-func kill(killer: Node):
+func	kill(killer: Node):
 	print("Killed by '", killer.name, "'!")
 	self.position = self.spawn_pos
 	#queue_free()
