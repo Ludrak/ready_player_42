@@ -1,27 +1,57 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Sources/BulletCollector.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Game Objects/Cameras/CameraFollow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/World Assets/BuildingLevels/Level1/Building01-1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Resources/Assets/8-bit-pixel-art-city-2o-2560x1700.jpg" type="Texture" id=5]
+[ext_resource path="res://Resources/Assets/parralax-3.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Assets/parralax-1.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Assets/parralax-2.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Game Objects/PowerUps/WeaponPowerUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Game Objects/Enemies/DeadlyArea.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4704.17, 218.017 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 0, -400 )
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, -400 )
+
+[node name="Behind2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.01, 0.01 )
+motion_mirroring = Vector2( 1000, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="parralax-1" type="Sprite" parent="ParallaxBackground/Behind2"]
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4000, 1000 )
+region_filter_clip = true
+
+[node name="Behind1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.03, 0.003 )
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="parralax-1" type="Sprite" parent="ParallaxBackground/Behind1"]
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4000, 1000 )
+
+[node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.05, 0.005 )
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="parralax-1" type="Sprite" parent="ParallaxBackground/Front"]
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4000, 1000 )
 
 [node name="CameraFollow" parent="." instance=ExtResource( 3 )]
-
-[node name="8-bit-pixel-art-city-2o-2560x1700" type="Sprite" parent="CameraFollow"]
-position = Vector2( -1.71899, 44.9521 )
-scale = Vector2( 3, 3 )
-z_index = -10
-texture = ExtResource( 5 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -163.966, -592.376 )
 
 [node name="FallingCollector" parent="." instance=ExtResource( 11 )]
 position = Vector2( -63.7906, 466.181 )
@@ -31,7 +61,15 @@ position = Vector2( 1036.99, 1075.04 )
 shape = SubResource( 1 )
 
 [node name="Building01-1" parent="." instance=ExtResource( 4 )]
-position = Vector2( -1267.93, 355.641 )
+position = Vector2( -1270.45, 356.901 )
 
 [node name="WeaponPowerUp" parent="." instance=ExtResource( 10 )]
 position = Vector2( 274.352, 143.314 )
+
+[node name="BulletCollector" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -122.261, 94.4265 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )

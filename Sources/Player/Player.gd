@@ -1,4 +1,8 @@
+tool
+
 extends KinematicBody2D
+
+export (NodePath) var		bullet_collector = "../BulletCollector"
 
 export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999
@@ -27,6 +31,8 @@ var					current_jump_delay = 0
 var weapon = null setget set_weapon
 var coins = 0 setget set_coins
 
+onready var	hand = $PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR
+
 func set_weapon(new_weapon):
 	print("Picked up '", new_weapon.name, "'!")
 	if weapon != null:
@@ -38,7 +44,13 @@ func set_weapon(new_weapon):
 		weapon.enabled = true
 	else:
 		print("Warning: '", weapon.name, "' has no 'enabled' attribute!")
-	add_child(weapon)
+		
+	weapon.position = hand.get_node("weapon").position
+	weapon.rotation = hand.get_node("weapon").rotation
+	weapon.scale = hand.get_node("weapon").scale
+	weapon.z_index = 1;
+	hand.add_child(weapon)
+	weapon.connect("fire_bullet", get_node(bullet_collector), "on_fire_bullet")
 
 func set_coins(new_coins):
 	coins = new_coins * attributes.coin_multiplicator.amount
@@ -122,19 +134,25 @@ func _physics_process(delta):
 
 	if (!jumping && self.velocity.length() > 0.1 && jumps == 0) :
 		if (!falling) :
-			$AnimationPlayer.play("run", -1, 2, false)
+			if (self.weapon) :
+				$AnimationPlayer.play("run weapon", -1, 1.3, false)
+			else :
+				$AnimationPlayer.play("run", -1, 1.3, false)
 		else :
 			$AnimationPlayer.play("jump_end", -1, 2.5, false)
 		falling = false
 	elif jumping:
-		$AnimationPlayer.play("jump_start", -1, 2, false);
+		$AnimationPlayer.play("jump_start", -1, 1, false);
 		$AnimationPlayer.get_animation("jump_start").loop = false
 	elif jumps > 0:
 		$AnimationPlayer.play("fall", -1, 2, true);
 		falling = true
 	else :
 		if (!falling) :
-			$AnimationPlayer.play("idle", -1, 1, false)
+			if (self.weapon):
+				$AnimationPlayer.play("idle weapon", -1, 1, false)
+			else:
+				$AnimationPlayer.play("idle", -1, 1, false)
 		else :
 			$AnimationPlayer.play("jump_end", -1, 2.5, false)
 		falling = false

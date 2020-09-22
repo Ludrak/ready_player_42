@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-const	LERP_VAL = 10
+const	LERP_VAL = 5
 
 var		player_inside = false
 var		alpha_ratio = 0

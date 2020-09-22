@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/parralax-2.png-d3de6636bf6acec7fd018b06da7c6d19.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Resources/Assets/parralax-2.png"
+dest_files=[ "res://.import/parralax-2.png-d3de6636bf6acec7fd018b06da7c6d19.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=1
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
