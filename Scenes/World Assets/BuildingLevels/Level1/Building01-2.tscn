@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/World Assets/StorageContainer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/World Assets/Barrel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Game Objects/Enemies/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Game Objects/Building.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/World Assets/ExplosiveBarrel.tscn" type="PackedScene" id=5]
+
+[node name="Building01-2" type="Node2D"]
+position = Vector2( 0, 4.23785 )
+rotation = -0.00288743
+
+[node name="Building" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 0 )
+size_x = 8
+
+[node name="StorageContainer2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1549.97, -371.867 )
+rotation = 0.718071
+scale = Vector2( 0.3, 0.3 )
+
+[node name="StorageContainer" parent="." instance=ExtResource( 1 )]
+position = Vector2( 817.15, -342.903 )
+rotation = -0.634969
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Building2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1558.36, 0 )
+size_x = 8
+
+[node name="Barrel" parent="." instance=ExtResource( 2 )]
+position = Vector2( 441.252, -53.6289 )
+
+[node name="Barrel2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1183.98, -572.477 )
+
+[node name="ExplosiveBarrel" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1111.93, -676.304 )
+
+[node name="ExplosiveBarrel2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1480.63, -390.249 )
+
+[node name="ExplosiveBarrel3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1857.79, -57.5779 )
+
+[node name="ExplosiveBarrel4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1967.98, -89.3618 )
+rotation = -0.681375
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240.096, -120.804 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2142.87, -131.959 )

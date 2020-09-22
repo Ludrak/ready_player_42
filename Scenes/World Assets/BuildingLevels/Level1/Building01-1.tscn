@@ -9,35 +9,51 @@
 
 [node name="Building01-1" type="Node2D"]
 
+[node name="Barrel3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1630.15, -568.544 )
+rotation = -0.533556
+max_health = 120
+
+[node name="Barrel4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1010.09, -205.057 )
+rotation = -0.533556
+max_health = 120
+
 [node name="StorageContainer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1138.03, -331.672 )
 rotation = -0.533556
 scale = Vector2( 0.3, 0.3 )
-
-[node name="ExplosiveBarrel" parent="StorageContainer" instance=ExtResource( 1 )]
-position = Vector2( -1001.06, 193.955 )
-
-[node name="Barrel" parent="StorageContainer" instance=ExtResource( 3 )]
-position = Vector2( -365.515, 149.908 )
-
-[node name="Barrel2" parent="StorageContainer" instance=ExtResource( 3 )]
-position = Vector2( 1813.98, 154.487 )
+player_inside = 0
 
 [node name="Building" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, 0 )
-size_x = 6
+position = Vector2( 0, -3.5636 )
+size_x = 17
 
 [node name="Building2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1890.23, -224.492 )
+size_x = 9
 
 [node name="StorageContainer2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1747.92, -319.511 )
 rotation = -0.487356
 scale = Vector2( 0.3, 0.3 )
+player_inside = 0
 
 [node name="ExplosiveBarrel" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2138.18, -286.408 )
 rotation = -0.809667
+
+[node name="ExplosiveBarrel3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1113.65, -238.299 )
+rotation = -0.576239
+
+[node name="ExplosiveBarrel4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2240.18, -335.408 )
+rotation = -0.455318
+
+[node name="ExplosiveBarrel5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2230.18, -480.408 )
+rotation = 1.79151
 
 [node name="Plateform" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2506.75, -221.26 )
@@ -45,6 +61,7 @@ position = Vector2( 2506.75, -221.26 )
 [node name="Barrel" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1169.44, -37.0728 )
 rotation = 1.59138
+max_health = 120
 
 [node name="ExplosiveBarrel2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2407.9, -873.979 )
@@ -52,3 +69,6 @@ rotation = 1.53852
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2515.2, -362.175 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2552.51, -946.674 )

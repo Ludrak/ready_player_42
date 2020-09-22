@@ -14,7 +14,7 @@
 radius = 25.4699
 height = 124.275
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=10]
 resource_name = "fall"
 length = 0.5
 
@@ -1240,10 +1240,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [  ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("PlayerBody:rotation_degrees")
@@ -1252,10 +1252,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [  ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("PlayerBody/Skeleton/Hip:position")
@@ -1652,10 +1652,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [  ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("PlayerBody:rotation_degrees")
@@ -1664,10 +1664,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [  ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("PlayerBody/Skeleton/Hip:position")
@@ -2480,9 +2480,12 @@ amount = 1.0
 [node name="CoinMultiplicator" parent="Attributes" instance=ExtResource( 3 )]
 amount = 1.0
 
+[node name="MaxHealth" parent="Attributes" instance=ExtResource( 3 )]
+amount = 100.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/fall = SubResource( 2 )
+anims/fall = SubResource( 10 )
 anims/idle = SubResource( 3 )
 "anims/idle weapon" = SubResource( 4 )
 anims/jump_end = SubResource( 5 )
@@ -2497,22 +2500,23 @@ anims/run_new = SubResource( 9 )
 scale = Vector2( 0.226, 0.226 )
 
 [node name="Hip" type="Bone2D" parent="PlayerBody/Skeleton"]
-position = Vector2( 12.7089, 54.7171 )
+position = Vector2( 1.10699, 75.4348 )
 rotation = 0.102338
 rest = Transform2D( 0.994768, 0.102159, -0.102159, 0.994768, 12.7089, 54.7171 )
 
 [node name="Chest" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
-position = Vector2( 10.5101, -64.7534 )
+position = Vector2( 11.0225, -58.3266 )
+rotation = 0.117808
 rest = Transform2D( 1, 0, 0, 1, 8.33921, -61.3226 )
 
 [node name="Head" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -27.3804, -256.018 )
-rotation = 0.246762
+rotation = 0.240362
 rest = Transform2D( 0.964496, 0.264098, -0.264098, 0.964496, -27.3804, -256.018 )
 
 [node name="ArmR_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -133.8, -130.33 )
-rotation = 0.532053
+rotation = 1.20039
 rest = Transform2D( 1, 0, 0, 1, -133.8, -130.33 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2521,7 +2525,7 @@ __meta__ = {
 
 [node name="ArmR_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top"]
 position = Vector2( 6.92392, 127.532 )
-rotation = -1.57771
+rotation = -1.93124
 rest = Transform2D( 1, 0, 0, 1, 6.92392, 127.532 )
 __meta__ = {
 "_edit_bone_": true
@@ -2529,7 +2533,7 @@ __meta__ = {
 
 [node name="HandR" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom"]
 position = Vector2( 25.4508, 112.086 )
-rotation = 1.27235
+rotation = 1.47836
 rest = Transform2D( 0.29404, 0.955793, -0.955793, 0.29404, 25.4508, 112.086 )
 __meta__ = {
 "_edit_bone_": true
@@ -2537,14 +2541,14 @@ __meta__ = {
 
 [node name="weapon" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR" instance=ExtResource( 5 )]
 visible = false
-position = Vector2( 83.749, -70.6109 )
+position = Vector2( 93.2912, -86.6539 )
 rotation = -0.714282
 scale = Vector2( 1.57212, 1.57212 )
 z_index = 1
 
 [node name="ArmL_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( 47.1862, -139.225 )
-rotation = -0.0776094
+rotation = 0.129619
 rest = Transform2D( 1, 0, 0, 1, 47.1862, -139.225 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2553,7 +2557,7 @@ __meta__ = {
 
 [node name="ArmL_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmL_top"]
 position = Vector2( 19.2494, 124.915 )
-rotation = 0.131896
+rotation = -1.984
 rest = Transform2D( 1, 0, 0, 1, 19.2494, 124.915 )
 __meta__ = {
 "_edit_bone_": true
@@ -2561,7 +2565,7 @@ __meta__ = {
 
 [node name="HandL" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmL_top/ArmL_bottom"]
 position = Vector2( 0.905426, 96.4659 )
-rotation = 1.66188
+rotation = 1.66189
 rest = Transform2D( -0.0909624, 0.995854, -0.995854, -0.0909624, 0.905426, 96.4659 )
 __meta__ = {
 "_edit_bone_": true
@@ -2569,6 +2573,7 @@ __meta__ = {
 
 [node name="LegR_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
 position = Vector2( -23.0588, 21.1644 )
+rotation = -0.833131
 rest = Transform2D( 1, 0, 0, 1, -23.0588, 21.1644 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2577,6 +2582,7 @@ __meta__ = {
 
 [node name="LegR_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegR_top"]
 position = Vector2( 4.12431, 137.662 )
+rotation = 2.22313
 rest = Transform2D( 1, 0, 0, 1, 4.12431, 137.662 )
 __meta__ = {
 "_edit_bone_": true
@@ -2584,7 +2590,7 @@ __meta__ = {
 
 [node name="FootR" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegR_top/LegR_bottom"]
 position = Vector2( 7.19505, 96.0006 )
-rotation = 0.389405
+rotation = -0.101739
 rest = Transform2D( 0.925135, 0.379638, -0.379638, 0.925135, 7.19505, 96.0006 )
 __meta__ = {
 "_edit_bone_": true
@@ -2592,7 +2598,7 @@ __meta__ = {
 
 [node name="LegL_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
 position = Vector2( 34.7577, 13.139 )
-rotation = 0.285079
+rotation = 0.416696
 rest = Transform2D( 0.95964, 0.281233, -0.281233, 0.95964, 34.7577, 13.139 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2601,7 +2607,7 @@ __meta__ = {
 
 [node name="LegL_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegL_top"]
 position = Vector2( 69.7693, 119.355 )
-rotation = 0.0098302
+rotation = 0.60273
 rest = Transform2D( 0.999952, 0.00983005, -0.00983005, 0.999952, 69.7693, 119.355 )
 __meta__ = {
 "_edit_bone_": true
@@ -2609,7 +2615,7 @@ __meta__ = {
 
 [node name="FootL" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegL_top/LegL_bottom"]
 position = Vector2( 35.6917, 90.716 )
-rotation = 0.137706
+rotation = -0.553741
 rest = Transform2D( 0.990534, 0.137271, -0.137271, 0.990534, 35.6917, 90.716 )
 __meta__ = {
 "_edit_bone_": true
