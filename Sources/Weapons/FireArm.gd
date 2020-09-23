@@ -40,5 +40,5 @@ func	_process(delta):
 		var mouse_pos = get_global_mouse_position()
 		self.look_at(mouse_pos)
 		if (shooter.is_on_floor() || (shooter.jumps == 0 && !shooter.jumping)):
-			self.rotation = clamp(self.rotation, -deg2rad(50), deg2rad(80))
+			self.rotation = clamp(self.rotation, -deg2rad(70), deg2rad(30))
 		#$Sprite.flip_h = mouse_pos.x < global_position.x

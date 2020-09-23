@@ -5,7 +5,7 @@ export (NodePath) var		bullet_collector = "../BulletCollector"
 
 export (float) var	LERP_TO_SPEED_ANIM = 0.3
 export (float) var	LERP_TO_JUMP_ANIM = 0.1
-export (float) var	LERP_TO_FALL_ANIM = 0.05
+export (float) var	LERP_TO_FALL_ANIM = 0.3
 
 export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999

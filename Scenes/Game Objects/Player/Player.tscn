@@ -2891,7 +2891,7 @@ animation = "run weapon"
 animation = "run"
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -654.269, 60.2632 )
+graph_offset = Vector2( -339.235, 462.275 )
 nodes/Animation/node = SubResource( 22 )
 nodes/Animation/position = Vector2( -220.556, 737.167 )
 nodes/Has_Weapon_Idle/node = SubResource( 14 )
@@ -2977,17 +2977,17 @@ rotation = 0.102338
 rest = Transform2D( 0.994768, 0.102159, -0.102159, 0.994768, 12.7089, 54.7171 )
 
 [node name="Chest" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
-position = Vector2( 8.58924, -61.7178 )
+position = Vector2( 9.64905, -63.3927 )
 rest = Transform2D( 1, 0, 0, 1, 8.33921, -61.3226 )
 
 [node name="Head" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -27.3804, -256.018 )
-rotation = 0.264907
+rotation = 0.254896
 rest = Transform2D( 0.964496, 0.264098, -0.264098, 0.964496, -27.3804, -256.018 )
 
 [node name="ArmR_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -133.8, -130.33 )
-rotation = 0.00551019
+rotation = 0.0288664
 rest = Transform2D( 1, 0, 0, 1, -133.8, -130.33 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2996,7 +2996,7 @@ __meta__ = {
 
 [node name="ArmR_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top"]
 position = Vector2( 6.92392, 127.532 )
-rotation = -0.00478329
+rotation = -0.0250584
 rest = Transform2D( 1, 0, 0, 1, 6.92392, 127.532 )
 __meta__ = {
 "_edit_bone_": true
@@ -3015,7 +3015,7 @@ position = Vector2( 15.952, -1.60078 )
 
 [node name="ArmL_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( 47.1862, -139.225 )
-rotation = -0.0089387
+rotation = -0.0468275
 rest = Transform2D( 1, 0, 0, 1, 47.1862, -139.225 )
 __meta__ = {
 "_edit_bone_": true,
@@ -3024,7 +3024,7 @@ __meta__ = {
 
 [node name="ArmL_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmL_top"]
 position = Vector2( 19.2494, 124.915 )
-rotation = 0.0151912
+rotation = 0.0795826
 rest = Transform2D( 1, 0, 0, 1, 19.2494, 124.915 )
 __meta__ = {
 "_edit_bone_": true
@@ -3213,6 +3213,7 @@ anims/run_new = SubResource( 9 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/Has_Weapon_Idle/add_amount = 0.0
 parameters/Has_Weapon_Run/add_amount = 0.0
 parameters/Idle_Run_Blend/blend_amount = 1.0

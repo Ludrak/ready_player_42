@@ -11,6 +11,8 @@ var		enabled = true
 var		bullet_force = 30
 var		bullet_lifetime = 150
 
+export (PackedScene) var	bullet_explosion = preload("res://Scenes/Game Objects/Bullets/BulletsExplosions/BulletExplosion.tscn")
+
 func	_ready():
 	#init_velocity(Vector2(1, 1
 	gravity = 0
@@ -37,17 +39,27 @@ func	init_velocity(vel, shooter_vel):
 	self.velocity += shooter_vel / 100
 	
 func	destroy():
+	var	explosion_instance = bullet_explosion.instance()
+	explosion_instance.global_position = self.global_position
+	if (get_parent()) :
+		get_parent().add_child(explosion_instance)
+	explosion_instance.get_node("CPUParticles2D").emitting = true
+	
 	if (get_parent() != null):
 		get_parent().remove_child(self)
 		queue_free()
 	pass
 
-
+var	bounces = 0
+var	max_bounces = 3
 func _on_Bullet_body_entered(body):
-
-	if (body.has_method("damage")):
-		body.damage(self, bullet_force)
+	bounces += 1
+	if (bounces > max_bounces):
 		self.destroy()
-		return
-	#yield(get_tree().create_timer(0.5),"timeout")
-	self.destroy()
+	else:
+		if (body.has_method("damage")):
+			body.damage(self, bullet_force)
+		if (body.has_method("get_normal")):
+			self.velocity *= body.get_normal()
+		else:
+			self.destroy()

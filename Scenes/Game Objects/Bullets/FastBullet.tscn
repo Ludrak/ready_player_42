@@ -18,7 +18,7 @@ max_value = 200.0
 _data = [ Vector2( 0, 9.09091 ), 0.0, 0.0, 0, 0, Vector2( 1, 5.45456 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.854545 ), 0.0, 0.0, 0, 0, Vector2( 0.634615, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.221154, 0.415909 ), 0.0, 0.0, 0, 0, Vector2( 0.480769, 1 ), -0.441627, -0.441627, 0, 0, Vector2( 1, 0 ), 0.112554, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.283951, 0.950617 )
@@ -27,7 +27,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.930759, 0.745098, 0.933333, 0.67451, 0.86
 [sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0865385, 0 ), 0.0145454, 0.0, 0, 0 ]
 
-[node name="Bullet" type="Area2D"]
+[node name="FastBullet" type="Area2D"]
 position = Vector2( -0.849034, -0.0467088 )
 collision_layer = 0
 collision_mask = 37
@@ -48,21 +48,21 @@ texture_scale = 0.01
 energy = 5.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2( 1, 0 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( -3.48975, 1 )
 amount = 1000
 lifetime = 1.2
-speed_scale = 10.0
+speed_scale = 5.0
+explosiveness = 0.33
 randomness = 1.0
 lifetime_randomness = 1.0
 local_coords = false
 texture = ExtResource( 3 )
 emission_shape = 1
-emission_sphere_radius = 7.62
+emission_sphere_radius = 0.1
 direction = Vector2( 0, 0 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 5.0
+initial_velocity = 87.24
 initial_velocity_random = 1.0
 angular_velocity = -595.87
 angular_velocity_random = 1.0
@@ -71,7 +71,7 @@ linear_accel_curve = SubResource( 2 )
 radial_accel = 100.0
 tangential_accel_random = 1.0
 tangential_accel_curve = SubResource( 3 )
-scale_amount = 0.01
+scale_amount = 0.02
 scale_amount_curve = SubResource( 4 )
 color_ramp = SubResource( 5 )
 anim_offset_random = 0.12
