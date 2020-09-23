@@ -32,8 +32,9 @@ func	_physics_process(delta):
 
 	#add_force(self.velocity, Vector2(START_SPEED * delta, START_SPEED * delta))
 	
-func	init_velocity(dir):
-	self.velocity = dir * START_SPEED
+func	init_velocity(vel, shooter_vel):
+	self.velocity = vel * START_SPEED;
+	self.velocity += shooter_vel / 100
 	
 func	destroy():
 	if (get_parent() != null):

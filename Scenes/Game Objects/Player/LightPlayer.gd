@@ -1,6 +1,6 @@
 extends Light2D
 
-const		noise_strongness = 100;
+const		noise_strength = 1000;
 const		noise_speed = 0.1
 
 var			noise_val_x = 0
@@ -23,7 +23,7 @@ func _process(delta):
 	noise.period = 20.0
 	noise.persistence = 0.8
 	
-	position = fixed_pos + Vector2(noise.get_noise_2d(noise_val_x, 0.0), noise.get_noise_2d(0.0, noise_val_y)) * noise_strongness
+	position = fixed_pos + Vector2(noise.get_noise_2d(noise_val_x, 0.0), noise.get_noise_2d(0.0, noise_val_y)) * noise_strength * delta
 	noise_val_x += noise_speed
 	noise_val_y += noise_speed
 	pass

@@ -19,4 +19,5 @@ func _ready():
 func _on_body_entered(body):
 	remove_child(weapon_instance)
 	queue_free()
+	weapon_instance.set_shooter(body)
 	body.weapon = weapon_instance

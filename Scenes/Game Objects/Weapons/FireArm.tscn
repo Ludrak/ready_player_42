@@ -5,12 +5,14 @@
 [ext_resource path="res://Resources/Assets/weapon.png" type="Texture" id=3]
 
 [node name="FireArm" type="Node2D"]
+rotation = -0.0216091
 script = ExtResource( 2 )
 
 [node name="Bullet" parent="." instance=ExtResource( 1 )]
 width = 2.0
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 55.9397, -2.19516 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 85 )

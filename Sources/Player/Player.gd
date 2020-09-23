@@ -3,6 +3,10 @@ extends KinematicBody2D
 
 export (NodePath) var		bullet_collector = "../BulletCollector"
 
+export (float) var	LERP_TO_SPEED_ANIM = 0.3
+export (float) var	LERP_TO_JUMP_ANIM = 0.1
+export (float) var	LERP_TO_FALL_ANIM = 0.05
+
 export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999
 export (int) var	SPEED =  700 # 23000
@@ -46,9 +50,9 @@ func set_weapon(new_weapon):
 	else:
 		print("Warning: '", weapon.name, "' has no 'enabled' attribute!")
 		
-	weapon.position = hand.get_node("weapon").position
-	weapon.rotation = hand.get_node("weapon").rotation
-	weapon.scale = hand.get_node("weapon").scale
+	weapon.position = hand.get_node("HandAttachement").position
+	weapon.rotation = hand.get_node("HandAttachement").rotation
+	weapon.scale = Vector2(2, 2)#hand.get_node("HandAttachement").scale
 	weapon.z_index = 1;
 	hand.add_child(weapon)
 	weapon.connect("fire_bullet", get_node(bullet_collector), "on_fire_bullet")
@@ -111,7 +115,7 @@ func get_input():
 	
 	if shoot and can_shoot():
 		if weapon.has_method("shoot"):
-			weapon.shoot(get_global_mouse_position(), self)
+			weapon.shoot(get_global_mouse_position())
 		else:
 			print("Warning: '", weapon.name, "' has no 'shoot' method!")
 
@@ -123,7 +127,7 @@ func get_input():
 		jumping = false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Get input
 	if !is_on_wall() or is_on_floor():
 		get_input()
@@ -133,36 +137,48 @@ func _physics_process(delta):
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
 	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
 
+	if (velocity.y > 0 && !is_on_floor() && jumps > 0 && !jumping):
+		falling = true
+	else :
+		falling = false
 	# Update jump state
 	if jumps > 0 and is_on_floor():
 		jumps = 0
 
-
-	if (!jumping && self.velocity.length() > 0.1 && jumps == 0) :
-		if (!falling) :
-			if (self.weapon) :
-				$AnimationPlayer.play("run weapon", -1, 1.3, false)
-			else :
-				$AnimationPlayer.play("run", -1, 1.3, false)
+	if (!jumping && jumps == 0 && !falling):
+		#not jumping and fall
+		$AnimationTree.set("parameters/Is_Jumping/add_amount", 0)
+		$AnimationPlayer.set("parameters/Is_Falling/add_amount", 0)
+		##	HAS WEAPON
+		##
+		if (self.weapon):
+			$AnimationTree.set("parameters/Has_Weapon_Run/add_amount", 1)
+			$AnimationTree.set("parameters/Has_Weapon_Idle/add_amount", 1)
 		else :
-			$AnimationPlayer.play("jump_end", -1, 2.5, false)
-		falling = false
-	elif jumping:
-		$AnimationPlayer.play("jump_start", -1, 1, false);
-		$AnimationPlayer.get_animation("jump_start").loop = false
-	elif jumps > 0:
-		$AnimationPlayer.play("fall", -1, 2, true);
-		falling = true
+			$AnimationTree.set("parameters/Has_Weapon_Run/add_amount", 0)
+			$AnimationTree.set("parameters/Has_Weapon_Idle/add_amount", 0)
+			
+		##	IS RUNNING
+		##
+		if (self.velocity.length() > 0.1) :
+			var	lerp_to = lerp ($AnimationTree.get("parameters/Idle_Run_Blend/blend_amount"), 0, LERP_TO_SPEED_ANIM)
+			print(str("blend :", lerp_to))
+			$AnimationTree.set("parameters/Idle_Run_Blend/blend_amount", lerp_to)
+		else :
+			var	lerp_to = lerp ($AnimationTree.get("parameters/Idle_Run_Blend/blend_amount"), 1, LERP_TO_SPEED_ANIM)
+			$AnimationTree.set("parameters/Idle_Run_Blend/blend_amount", lerp_to)
+	elif falling:
+		var	lerp_to = lerp ($AnimationTree.get("parameters/Is_Falling/add_amount"), 1, LERP_TO_FALL_ANIM)
+		$AnimationTree.set("parameters/Is_Falling/add_amount", lerp_to)
+		pass
 	else :
-		if (!falling) :
-			if (self.weapon):
-				$AnimationPlayer.play("idle weapon", -1, 1, false)
-			else:
-				$AnimationPlayer.play("idle", -1, 1, false)
-		else :
-			$AnimationPlayer.play("jump_end", -1, 2.5, false)
-		falling = false
-	pass
+		#not falling
+		$AnimationPlayer.set("parameters/Is_Falling/add_amount", 0)
+		#jumping
+		var	lerp_to = lerp ($AnimationTree.get("parameters/Is_Jumping/add_amount"), 1, LERP_TO_JUMP_ANIM)
+		$AnimationTree.set("parameters/Is_Jumping/add_amount", lerp_to)
+
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -179,8 +195,3 @@ func	kill(killer: Node):
 	print("Killed by '", killer.name, "'!")
 	self.position = self.spawn_pos
 	#queue_free()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

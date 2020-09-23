@@ -2,7 +2,7 @@ extends RigidBody2D
 
 export (PackedScene) var loot = preload("res://Scenes/Game Objects/Loot/Loot.tscn")
 
-export (int) var		loot_count = 4
+export (int) var		loot_count = 1
 export (int) var		max_health = 75
 
 var						health = max_health

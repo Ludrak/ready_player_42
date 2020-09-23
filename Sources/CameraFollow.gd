@@ -1,9 +1,9 @@
 extends Camera2D
 const		NOISE_VAL = 100
 
-const		POSITION_LERP_VALUE = 0.94
-const		IDLE_ZOOM_LERP = 0.01
-const		ZOOM_LERP = 0.03
+const		POSITION_LERP_VALUE = 55.20#0.94
+const		IDLE_ZOOM_LERP = 2#0.01
+const		ZOOM_LERP = 0.8#0.03
 
 const		IDLE_ZOOM = 1.2
 const		MOVING_ZOOM = 1.4
@@ -20,7 +20,7 @@ func	set_target(new_target):
 	target = new_target
 	print("'", name, "' target changed to '", target.name, "'!")
 	
-func	_process(delta):
+func	_process(_delta):
 	if (Input.is_action_pressed("ui_down")):
 		top_offset = lerp(top_offset, PLAYER_TOP_OFFSET - 400, 0.5);
 	else :
@@ -34,17 +34,17 @@ func	_physics_process(delta):
 		var	dist = (position - (target.position - Vector2(0, PLAYER_TOP_OFFSET))).length()
 		
 		if dist > NOISE_VAL :
-			zoom = zoom.linear_interpolate(Vector2(MOVING_ZOOM, MOVING_ZOOM), ZOOM_LERP)
+			zoom = zoom.linear_interpolate(Vector2(MOVING_ZOOM, MOVING_ZOOM), ZOOM_LERP * delta)
 		elif dist > 140 :
-			zoom = zoom.linear_interpolate(Vector2(OUT_OF_BORDER_ZOOM, OUT_OF_BORDER_ZOOM), ZOOM_LERP)
+			zoom = zoom.linear_interpolate(Vector2(OUT_OF_BORDER_ZOOM, OUT_OF_BORDER_ZOOM), ZOOM_LERP * delta)
 		else :
-			zoom = zoom.linear_interpolate(Vector2(IDLE_ZOOM, IDLE_ZOOM), IDLE_ZOOM_LERP)
+			zoom = zoom.linear_interpolate(Vector2(IDLE_ZOOM, IDLE_ZOOM), IDLE_ZOOM_LERP * delta)
 			
 		var noise = OpenSimplexNoise.new()
 		noise.seed = 4242342
 		noise.octaves = 1
 		noise.period = 20
 		noise.persistence = 0.8
-		position = (target.position - Vector2(0, top_offset) + Vector2(noise.get_noise_2d(x_noise, 0) * NOISE_VAL, noise.get_noise_2d(0, y_noise) * NOISE_VAL)).linear_interpolate(position, POSITION_LERP_VALUE)
+		position = (target.position - Vector2(0, top_offset) + Vector2(noise.get_noise_2d(x_noise, 0) * NOISE_VAL, noise.get_noise_2d(0, y_noise) * NOISE_VAL)).linear_interpolate(position, POSITION_LERP_VALUE * delta)
 		x_noise += 0.1
 		y_noise += 0.1

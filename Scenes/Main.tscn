@@ -61,8 +61,8 @@ position = Vector2( -63.7906, 466.181 )
 position = Vector2( 1036.99, 1075.04 )
 shape = SubResource( 1 )
 
-[node name="Building01-2" parent="FallingCollector" instance=ExtResource( 5 )]
-position = Vector2( 2049.59, -107.609 )
+[node name="Building01-2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1985.8, 358.572 )
 
 [node name="Building01-1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -1270.45, 356.901 )
