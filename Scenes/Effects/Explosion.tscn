@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Resources/Assets/hiclipart.com.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Assets/smoke.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Effects/Explosion.gd" type="Script" id=3]
+[ext_resource path="res://Sources/Effects/Explosion.gd" type="Script" id=3]
+
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0, 0.272727 ), 3.77203, 3.77203, 0, 0, Vector2( 0.235632, 0.429545 ), 0.0, 0.0, 0, 0, Vector2( 0.936782, 0.665909 ), 0.441438, 0.0, 0, 0 ]

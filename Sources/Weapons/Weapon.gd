@@ -11,6 +11,8 @@ onready var shoot_cooldown = Cooldown.new(shoot_cooldown_ms / 1000.0)
 
 var		shooter = null setget set_shooter
 
+var		hand_attached = null;
+
 func _on_enabled(_new_enabled):
 	pass
 

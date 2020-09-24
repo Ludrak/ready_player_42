@@ -34,7 +34,7 @@ func flip():
 	direction.x *= -1
 	$FloorRayCast.cast_to *= flip_vector
 	$WallRayCast.cast_to *= flip_vector
-	$Sprite.flip_h = !$Sprite.flip_h
+	$PlayerBody.scale.x = -$PlayerBody.scale.x
 
 # TODO: Optimization
 func _process(delta):

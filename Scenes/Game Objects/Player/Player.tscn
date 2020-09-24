@@ -1,28 +1,33 @@
 [gd_scene load_steps=33 format=2]
 
-[ext_resource path="res://Resources/Assets/Roboflic_WIP.png" type="Texture" id=1]
-[ext_resource path="res://Sources/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Sources/Entity/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Game Objects/Attributes/Attribute.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sources/Player/PlayerAttributeContainer.gd" type="Script" id=4]
+[ext_resource path="res://Sources/Entity/Player/PlayerAttributeContainer.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Assets/player.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Assets/light2.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/Game Objects/Player/LightPlayer.gd" type="Script" id=8]
-[ext_resource path="res://Resources/Assets/runV2.png" type="Texture" id=9]
+[ext_resource path="res://Sources/Entity/Player/LightPlayer.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Assets/light.png" type="Texture" id=10]
+
+[sub_resource type="StreamTexture" id=24]
+flags = 4
+load_path = "res://.import/runV2.png-0a9d645e2dc6bbdc7bde417da7914069.stex"
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.4699
 height = 124.275
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.526753, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.950617, 1 )
 colors = PoolColorArray( 0.137255, 0.980392, 1, 0.156863, 0.92549, 1, 1, 0, 1, 1, 1, 0.192157 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "fall"
+[sub_resource type="StreamTexture" id=25]
+flags = 4
+load_path = "res://.import/Roboflic_WIP.png-42ca524204b4bdb59e24f1dabade2fde.stex"
+
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerBody/Skeleton/Hip/LegL_top/LegL_bottom:position")
@@ -433,8 +438,7 @@ tracks/33/keys = {
 "values": [ 60.1484, 60.1484 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -822,8 +826,7 @@ tracks/31/keys = {
 "values": [ 7.88996, 7.88996, 7.88996 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idle weapon"
+[sub_resource type="Animation" id=6]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -1211,7 +1214,7 @@ tracks/31/keys = {
 "values": [ 7.88996, 7.88996, 7.88996 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerBody/Skeleton:position")
@@ -1598,7 +1601,7 @@ tracks/31/keys = {
 "values": [ 5.08375, -15.9413 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerBody/Skeleton:position")
@@ -2033,7 +2036,7 @@ tracks/35/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -2445,8 +2448,7 @@ tracks/33/keys = {
 "values": [ -31.727, 8.89466, 6.09145, 5.00683 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "run weapon"
+[sub_resource type="Animation" id=10]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -2858,64 +2860,64 @@ tracks/33/keys = {
 "values": [ -31.727, 8.89466, 6.09145, 5.00683 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.75
 loop = true
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "fall"
+
+[sub_resource type="AnimationNodeAdd2" id=13]
 
 [sub_resource type="AnimationNodeAdd2" id=14]
 
-[sub_resource type="AnimationNodeAdd2" id=15]
-
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "idle weapon"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "idle"
 
-[sub_resource type="AnimationNodeBlend2" id=16]
+[sub_resource type="AnimationNodeBlend2" id=17]
 
-[sub_resource type="AnimationNodeAdd2" id=23]
+[sub_resource type="AnimationNodeAdd2" id=18]
 
-[sub_resource type="AnimationNodeAdd2" id=21]
-
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "jump_start"
+[sub_resource type="AnimationNodeAdd2" id=19]
 
 [sub_resource type="AnimationNodeAnimation" id=20]
+animation = "jump_start"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "run weapon"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "run"
 
-[sub_resource type="AnimationNodeBlendTree" id=13]
+[sub_resource type="AnimationNodeBlendTree" id=23]
 graph_offset = Vector2( -339.235, 462.275 )
-nodes/Animation/node = SubResource( 22 )
+nodes/Animation/node = SubResource( 12 )
 nodes/Animation/position = Vector2( -220.556, 737.167 )
-nodes/Has_Weapon_Idle/node = SubResource( 14 )
+nodes/Has_Weapon_Idle/node = SubResource( 13 )
 nodes/Has_Weapon_Idle/position = Vector2( -168.9, 134 )
-nodes/Has_Weapon_Run/node = SubResource( 15 )
+nodes/Has_Weapon_Run/node = SubResource( 14 )
 nodes/Has_Weapon_Run/position = Vector2( -165.81, -217.263 )
-nodes/Idle/node = SubResource( 18 )
+nodes/Idle/node = SubResource( 16 )
 nodes/Idle/position = Vector2( -467.347, 88.1867 )
-nodes/Idle-Weapon/node = SubResource( 17 )
+nodes/Idle-Weapon/node = SubResource( 15 )
 nodes/Idle-Weapon/position = Vector2( -475.86, 253.4 )
-nodes/Idle_Run_Blend/node = SubResource( 16 )
+nodes/Idle_Run_Blend/node = SubResource( 17 )
 nodes/Idle_Run_Blend/position = Vector2( 150, -67 )
-nodes/Is_Falling/node = SubResource( 23 )
+nodes/Is_Falling/node = SubResource( 18 )
 nodes/Is_Falling/position = Vector2( 162.268, 572.711 )
-nodes/Is_Jumping/node = SubResource( 21 )
+nodes/Is_Jumping/node = SubResource( 19 )
 nodes/Is_Jumping/position = Vector2( 540.858, 253.357 )
-nodes/Jump/node = SubResource( 19 )
+nodes/Jump/node = SubResource( 20 )
 nodes/Jump/position = Vector2( -222.026, 487.937 )
-nodes/Run/node = SubResource( 12 )
+nodes/Run/node = SubResource( 22 )
 nodes/Run/position = Vector2( -484.667, -288.833 )
-nodes/Run-Weapon/node = SubResource( 20 )
+nodes/Run-Weapon/node = SubResource( 21 )
 nodes/Run-Weapon/position = Vector2( -487.477, -107.93 )
 nodes/output/position = Vector2( 845.6, 250.336 )
-node_connections = [ "output", 0, "Is_Jumping", "Is_Falling", 0, "Jump", "Is_Falling", 1, "Animation", "Has_Weapon_Run", 0, "Run", "Has_Weapon_Run", 1, "Run-Weapon", "Has_Weapon_Idle", 0, "Idle", "Has_Weapon_Idle", 1, "Idle-Weapon", "Is_Jumping", 0, "Idle_Run_Blend", "Is_Jumping", 1, "Is_Falling", "Idle_Run_Blend", 0, "Has_Weapon_Run", "Idle_Run_Blend", 1, "Has_Weapon_Idle" ]
+node_connections = [ "output", 0, "Is_Jumping", "Is_Jumping", 0, "Idle_Run_Blend", "Is_Jumping", 1, "Is_Falling", "Has_Weapon_Idle", 0, "Idle", "Has_Weapon_Idle", 1, "Idle-Weapon", "Has_Weapon_Run", 0, "Run", "Has_Weapon_Run", 1, "Run-Weapon", "Idle_Run_Blend", 0, "Has_Weapon_Run", "Idle_Run_Blend", 1, "Has_Weapon_Idle", "Is_Falling", 0, "Jump", "Is_Falling", 1, "Animation" ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2147483650
@@ -2927,7 +2929,7 @@ bullet_collector = NodePath("/root/Game/BulletCollector")
 visible = false
 position = Vector2( 3.22122, -142.715 )
 scale = Vector2( 0.289544, 0.289544 )
-texture = ExtResource( 9 )
+texture = SubResource( 24 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 0, -4.6998 )
@@ -2963,8 +2965,8 @@ texture = ExtResource( 10 )
 emission_shape = 1
 emission_sphere_radius = 78.24
 scale_amount = 0.4
-scale_amount_curve = SubResource( 10 )
-color_ramp = SubResource( 11 )
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
 
 [node name="PlayerBody" type="Node2D" parent="."]
 
@@ -2977,17 +2979,17 @@ rotation = 0.102338
 rest = Transform2D( 0.994768, 0.102159, -0.102159, 0.994768, 12.7089, 54.7171 )
 
 [node name="Chest" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
-position = Vector2( 9.53183, -63.2074 )
+position = Vector2( 9.22434, -62.7215 )
 rest = Transform2D( 1, 0, 0, 1, 8.33921, -61.3226 )
 
 [node name="Head" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -27.3804, -256.018 )
-rotation = 0.256003
+rotation = 0.258908
 rest = Transform2D( 0.964496, 0.264098, -0.264098, 0.964496, -27.3804, -256.018 )
 
 [node name="ArmR_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -133.8, -130.33 )
-rotation = 0.0262831
+rotation = 0.0195066
 rest = Transform2D( 1, 0, 0, 1, -133.8, -130.33 )
 __meta__ = {
 "_edit_bone_": true,
@@ -2996,7 +2998,7 @@ __meta__ = {
 
 [node name="ArmR_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top"]
 position = Vector2( 6.92392, 127.532 )
-rotation = -0.0228158
+rotation = -0.0169333
 rest = Transform2D( 1, 0, 0, 1, 6.92392, 127.532 )
 __meta__ = {
 "_edit_bone_": true
@@ -3015,7 +3017,7 @@ position = Vector2( 15.952, -1.60078 )
 
 [node name="ArmL_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( 47.1862, -139.225 )
-rotation = -0.0426368
+rotation = -0.0316439
 rest = Transform2D( 1, 0, 0, 1, 47.1862, -139.225 )
 __meta__ = {
 "_edit_bone_": true,
@@ -3024,7 +3026,7 @@ __meta__ = {
 
 [node name="ArmL_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmL_top"]
 position = Vector2( 19.2494, 124.915 )
-rotation = 0.0724606
+rotation = 0.0537783
 rest = Transform2D( 1, 0, 0, 1, 19.2494, 124.915 )
 __meta__ = {
 "_edit_bone_": true
@@ -3194,24 +3196,24 @@ visible = false
 modulate = Color( 1, 1, 1, 0.258824 )
 position = Vector2( 83.3333, -26.5346 )
 scale = Vector2( 0.225639, 0.225639 )
-texture = ExtResource( 1 )
+texture = SubResource( 25 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/fall = SubResource( 2 )
-anims/idle = SubResource( 3 )
-"anims/idle weapon" = SubResource( 4 )
-anims/jump_end = SubResource( 5 )
-anims/jump_start = SubResource( 6 )
-anims/run = SubResource( 7 )
-"anims/run weapon" = SubResource( 8 )
-anims/run_new = SubResource( 9 )
+anims/fall = SubResource( 4 )
+anims/idle = SubResource( 5 )
+"anims/idle weapon" = SubResource( 6 )
+anims/jump_end = SubResource( 7 )
+anims/jump_start = SubResource( 8 )
+anims/run = SubResource( 9 )
+"anims/run weapon" = SubResource( 10 )
+anims/run_new = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 13 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Has_Weapon_Idle/add_amount = 0.0

@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/Assets/light.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Game Objects/Bullets/BulletsExplosions/BulletExplosion.gd" type="Script" id=2]
+[ext_resource path="res://Sources/Entity/Bullets/BulletExplosion.gd" type="Script" id=2]
+
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.317308, 0.336364 ), -1.44444, -1.44444, 0, 0, Vector2( 1, 0 ), 0.0691795, 0.0, 0, 0 ]

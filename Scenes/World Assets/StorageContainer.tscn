@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/World Assets/Scripts/ContainerAsset.gd" type="Script" id=1]
+[ext_resource path="res://Sources/World/Objects Scripts/ContainerAsset.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Assets/container_inside.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Assets/container_outside.png" type="Texture" id=3]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1330.11, 25.2959 )

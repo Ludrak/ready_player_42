@@ -4,7 +4,8 @@
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Assets/8-bit-pixel-art-city-2o-2560x1700.jpg" type="Texture" id=3]
 [ext_resource path="res://Scenes/Game Objects/Building.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sources/Player/FallingPlayerCollector.gd" type="Script" id=5]
+[ext_resource path="res://Sources/Entity/Player/FallingPlayerCollector.gd" type="Script" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 57.7567 )

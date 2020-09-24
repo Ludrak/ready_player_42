@@ -2,8 +2,9 @@
 
 [ext_resource path="res://Scenes/Game Objects/Weapons/Bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sources/Weapons/FireArm.gd" type="Script" id=2]
-[ext_resource path="res://Resources/Assets/weapon.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Assets/gun_new.png" type="Texture" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=2]
 
 [node name="FireArm" type="Node2D"]
 rotation = -0.0216091
@@ -12,14 +13,8 @@ script = ExtResource( 2 )
 [node name="Bullet" parent="." instance=ExtResource( 1 )]
 width = 2.0
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 55.9397, -2.19516 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 3 )
-offset = Vector2( 0, 85 )
-
 [node name="gun_new" type="Sprite" parent="."]
-position = Vector2( 32.3227, 13.6168 )
+material = SubResource( 2 )
+position = Vector2( 30.1342, 8.62477 )
 scale = Vector2( 1.60173, 1.60173 )
 texture = ExtResource( 4 )

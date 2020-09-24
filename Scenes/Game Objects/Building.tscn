@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Game Objects/Building.gd" type="Script" id=1]
+[ext_resource path="res://Sources/World/Building.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Assets/building_top.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Assets/building_window.png" type="Texture" id=3]
+
 
 [node name="Building" type="StaticBody2D"]
 position = Vector2( -1.18921, 0 )
