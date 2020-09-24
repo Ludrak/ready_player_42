@@ -11,6 +11,11 @@ const		OUT_OF_BORDER_ZOOM = 2
 
 const		PLAYER_TOP_OFFSET = 150
 
+var			shake_amount = 100
+var			is_shaking = false setget set_shaking
+var			shake_cooldown_ms = 100
+var			shake_cooldown = shake_cooldown
+
 onready var target = get_parent().get_node("Player") setget set_target
 
 func	_ready():
@@ -48,3 +53,19 @@ func	_physics_process(delta):
 		position = (target.position - Vector2(0, top_offset) + Vector2(noise.get_noise_2d(x_noise, 0) * NOISE_VAL, noise.get_noise_2d(0, y_noise) * NOISE_VAL)).linear_interpolate(position, POSITION_LERP_VALUE * delta)
 		x_noise += 0.1
 		y_noise += 0.1
+		
+		if (is_shaking):
+			camera_shake(shake_amount);
+			shake_cooldown -= 1
+			if (shake_cooldown <= 0):
+				is_shaking = false
+				shake_cooldown = 0;
+		
+func	set_shaking(new_shaking : bool):
+	is_shaking = new_shaking;
+	if (new_shaking):
+		shake_cooldown = shake_cooldown_ms
+		
+func	camera_shake(amount : int):
+	print ("shaking")
+	position += Vector2(rand_range(-amount/2, amount/2), rand_range(-amount/2, amount/2));

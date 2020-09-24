@@ -125,26 +125,9 @@ func get_input():
 	#TODO Double jump auto activates due to action_pressed
 	if !jump :
 		jumping = false
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	# Get input
-	if !is_on_wall() or is_on_floor():
-		get_input()
-	# Apply gravity
-	if !is_on_floor() || is_on_wall():
-		velocity.y += gravity
-	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
-	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
-
-	if (velocity.y > 0 && !is_on_floor() && jumps > 0 && !jumping):
-		falling = true
-	else :
-		falling = false
-	# Update jump state
-	if jumps > 0 and is_on_floor():
-		jumps = 0
-
+		
+		
+func animate():
 	if (!jumping && jumps == 0 && !falling):
 		#not jumping and fall
 		$AnimationTree.set("parameters/Is_Jumping/add_amount", 0)
@@ -177,6 +160,28 @@ func _physics_process(_delta):
 		#jumping
 		var	lerp_to = lerp ($AnimationTree.get("parameters/Is_Jumping/add_amount"), 1, LERP_TO_JUMP_ANIM)
 		$AnimationTree.set("parameters/Is_Jumping/add_amount", lerp_to)
+
+
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(_delta):
+	animate()
+	# Get input
+	if !is_on_wall() or is_on_floor():
+		get_input()
+	# Apply gravity
+	if !is_on_floor() || is_on_wall():
+		velocity.y += gravity
+	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
+	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
+
+	if (velocity.y > 0 && !is_on_floor() && jumps > 0 && !jumping):
+		falling = true
+	else :
+		falling = false
+	# Update jump state
+	if jumps > 0 and is_on_floor():
+		jumps = 0
 
 
 

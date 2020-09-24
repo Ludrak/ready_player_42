@@ -22,7 +22,7 @@ scale = Vector2( 2, 2 )
 transform = Transform2D( 2, 0, 0, 2, 0, -400 )
 
 [node name="Behind2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.01, 0.01 )
+motion_scale = Vector2( 0.01, 0 )
 motion_mirroring = Vector2( 1000, 0 )
 __meta__ = {
 "_edit_group_": true
@@ -35,7 +35,7 @@ region_rect = Rect2( 0, 0, 4000, 1000 )
 region_filter_clip = true
 
 [node name="Behind1" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.03, 0.003 )
+motion_scale = Vector2( 0.03, 0 )
 motion_mirroring = Vector2( 1000, 0 )
 
 [node name="parralax-1" type="Sprite" parent="ParallaxBackground/Behind1"]
@@ -44,7 +44,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 4000, 1000 )
 
 [node name="Front" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.05, 0.005 )
+motion_scale = Vector2( 0.05, 0 )
 motion_mirroring = Vector2( 1000, 0 )
 
 [node name="parralax-1" type="Sprite" parent="ParallaxBackground/Front"]

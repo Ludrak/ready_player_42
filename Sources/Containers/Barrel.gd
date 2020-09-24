@@ -3,7 +3,7 @@ extends RigidBody2D
 export (PackedScene) var loot = preload("res://Scenes/Game Objects/Loot/Loot.tscn")
 
 export (int) var		loot_count = 1
-export (int) var		max_health = 75
+export (float) var		max_health = 75
 
 var						health = max_health
 
@@ -16,6 +16,11 @@ func	damage(damager: Node2D, amount: int):
 	if (self.health < 0):
 		self.health = 0;
 		self.kill(damager)
+		
+func _process(delta):
+	modulate.r = 0.5 + (self.health / self.max_health) / 2
+	modulate.g = 0.5 + (self.health / self.max_health) / 2
+	modulate.b = 0.5 + (self.health / self.max_health) / 2
 
 func kill(killer: Node):
 	print("'", name, "' was killed by '", killer.name, "'!")

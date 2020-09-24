@@ -12,12 +12,6 @@
 [node name="Barrel3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1630.15, -568.544 )
 rotation = -0.533556
-max_health = 120
-
-[node name="Barrel4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1010.09, -205.057 )
-rotation = -0.533556
-max_health = 120
 
 [node name="StorageContainer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1138.03, -331.672 )
@@ -61,7 +55,6 @@ position = Vector2( 2506.75, -221.26 )
 [node name="Barrel" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1169.44, -37.0728 )
 rotation = 1.59138
-max_health = 120
 
 [node name="ExplosiveBarrel2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2407.9, -873.979 )
