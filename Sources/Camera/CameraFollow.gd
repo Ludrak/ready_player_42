@@ -11,7 +11,7 @@ const		OUT_OF_BORDER_ZOOM = 2
 
 const		PLAYER_TOP_OFFSET = 150
 
-var			shake_amount = 100
+var			shake_amount = 1000
 var			is_shaking = false setget set_shaking
 var			shake_cooldown_ms = 100
 var			shake_cooldown = shake_cooldown
@@ -60,6 +60,8 @@ func	_physics_process(delta):
 			if (shake_cooldown <= 0):
 				is_shaking = false
 				shake_cooldown = 0;
+		elif (offset != Vector2.ZERO):
+			offset = Vector2.ZERO
 		
 func	set_shaking(new_shaking : bool):
 	is_shaking = new_shaking;
@@ -68,4 +70,4 @@ func	set_shaking(new_shaking : bool):
 		
 func	camera_shake(amount : int):
 	print ("shaking")
-	position += Vector2(rand_range(-amount/2, amount/2), rand_range(-amount/2, amount/2));
+	offset = Vector2(rand_range(-amount/2, amount/2), rand_range(-amount/2, amount/2));

@@ -5,6 +5,9 @@ extends Node2D
 export (int) var	explosion_force = 80
 
 export (bool) var	exploding = false setget set_exploding
+export (NodePath) var cam_path = NodePath("/root/Game/CamerFollow")
+
+onready var cam = get_tree().get_root().get_node("/root/Game/CamerFollow")
 
 func	_ready():
 	explode()
@@ -20,9 +23,9 @@ func	explode():
 	$NewFire.emitting = true
 	$DamageZoneIndicator.emitting =true
 	$Sparkles.emitting = true
-	var	cam = get_viewport().get_camera()
-	if (cam && cam.has_method("set_shaking")):
-		cam.set_shaking(true);
+	print(cam)
+	if (cam && cam.is_shaking != null):
+		cam.is_shaking = true;
 	yield(get_tree().create_timer(0.2),"timeout")
 	kill_around()
 	

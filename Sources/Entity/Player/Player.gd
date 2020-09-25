@@ -5,7 +5,7 @@ export (NodePath) var		bullet_collector = "../BulletCollector"
 
 export (float) var	LERP_TO_SPEED_ANIM = 0.3
 export (float) var	LERP_TO_JUMP_ANIM = 0.1
-export (float) var	LERP_TO_FALL_ANIM = 0.3
+export (float) var	LERP_TO_FALL_ANIM = 1#0.3
 
 export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999
@@ -14,29 +14,32 @@ export (int) var	SPEED =  700 # 23000
 export (int) var	jump_speed = 1200
 export (int) var	gravity = 98
 
-onready var attributes = $Attributes
+onready var			attributes = $Attributes
 
-onready var		health = attributes.max_health.amount
+onready var			health = attributes.max_health.amount
 
-onready var spawn_pos = self.position
+onready var			spawn_pos = self.position
 
-var	direction = "none"
+var					direction = "none"
 
-var velocity = Vector2.ZERO
-var jumps = 0
+var					velocity = Vector2.ZERO
+var					jumps = 0
 
-onready var	old_facing = self.get_scale().x
-onready var	facing = old_facing
+onready var			old_facing = self.get_scale().x
+onready var			facing = old_facing
 
-var	jumping = false
-var	falling = false
+var					jumping = false
+var					falling = false
 
-export (int) var		MAX_JUMP_DELAY = 20
+export (int) var	MAX_JUMP_DELAY = 20
 var					current_jump_delay = 0
-var weapon = null setget set_weapon
-var coins = 0 setget set_coins
+var					weapon = null setget set_weapon
+var					coins = 0 setget set_coins
 
-onready var	hand = $PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR
+var					is_grabbing_drone = false setget set_grab_drone
+var					grabbed_drone = null
+
+onready var			hand = $PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR
 
 func set_weapon(new_weapon):
 	print("Picked up '", new_weapon.name, "'!")
@@ -80,7 +83,7 @@ func get_input():
 	velocity.x = 0
 	
 	# Key States
-	var jump = Input.is_action_pressed('ui_select')
+	var jump = Input.is_action_pressed('ui_up')
 	var right = Input.is_action_pressed('ui_right')
 	var left = Input.is_action_pressed('ui_left')
 	var shoot = Input.is_action_pressed("ui_use_weapon")
@@ -128,10 +131,15 @@ func get_input():
 		
 		
 func animate():
-	if (!jumping && jumps == 0 && !falling):
+	if (!is_grabbing_drone):
+			$AnimationTree.set("parameters/Is_Grabbing_Drone/add_amount", 0)
+	
+	if (is_grabbing_drone):
+		$AnimationTree.set("parameters/Is_Grabbing_Drone/add_amount", 1)
+	elif (!jumping && jumps == 0 && !falling):
 		#not jumping and fall
 		$AnimationTree.set("parameters/Is_Jumping/add_amount", 0)
-		$AnimationPlayer.set("parameters/Is_Falling/add_amount", 0)
+		$AnimationTree.set("parameters/Is_Falling/add_amount", 0)
 		##	HAS WEAPON
 		##
 		if (self.weapon):
@@ -145,7 +153,6 @@ func animate():
 		##
 		if (self.velocity.length() > 0.1) :
 			var	lerp_to = lerp ($AnimationTree.get("parameters/Idle_Run_Blend/blend_amount"), 0, LERP_TO_SPEED_ANIM)
-			print(str("blend :", lerp_to))
 			$AnimationTree.set("parameters/Idle_Run_Blend/blend_amount", lerp_to)
 		else :
 			var	lerp_to = lerp ($AnimationTree.get("parameters/Idle_Run_Blend/blend_amount"), 1, LERP_TO_SPEED_ANIM)
@@ -156,7 +163,7 @@ func animate():
 		pass
 	else :
 		#not falling
-		$AnimationPlayer.set("parameters/Is_Falling/add_amount", 0)
+		$AnimationTree.set("parameters/Is_Falling/add_amount", 0)
 		#jumping
 		var	lerp_to = lerp ($AnimationTree.get("parameters/Is_Jumping/add_amount"), 1, LERP_TO_JUMP_ANIM)
 		$AnimationTree.set("parameters/Is_Jumping/add_amount", lerp_to)
@@ -167,21 +174,22 @@ func animate():
 func _physics_process(_delta):
 	animate()
 	# Get input
-	if !is_on_wall() or is_on_floor():
+	if (!is_on_wall() or is_on_floor()) and !is_grabbing_drone:
 		get_input()
 	# Apply gravity
-	if !is_on_floor() || is_on_wall():
+	if (!is_on_floor() || is_on_wall()) && !is_grabbing_drone:
 		velocity.y += gravity
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
 	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
 
-	if (velocity.y > 0 && !is_on_floor() && jumps > 0 && !jumping):
+	if (velocity.y < 0 && !is_on_floor() && jumps > 0 && !jumping):
 		falling = true
 	else :
 		falling = false
 	# Update jump state
 	if jumps > 0 and is_on_floor():
 		jumps = 0
+
 
 
 
@@ -200,3 +208,18 @@ func	kill(killer: Node):
 	print("Killed by '", killer.name, "'!")
 	self.position = self.spawn_pos
 	#queue_free()
+	
+func	set_grab_drone(value):
+	is_grabbing_drone = value
+	
+	if (value):
+		self.gravity = 0
+	else:
+		self.gravity = 98
+	
+func	grab_drone(drone : Node) :
+	if (drone != null):
+		is_grabbing_drone = true
+	else:
+		is_grabbing_drone = false
+	grabbed_drone = drone

@@ -35,6 +35,8 @@ colors = PoolColorArray( 1, 0.607843, 0, 0.258824, 1, 1, 1, 0 )
 script = ExtResource( 3 )
 
 [node name="Smoke" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.611765 )
+rotation = -0.00541765
 emitting = false
 amount = 5
 one_shot = true
