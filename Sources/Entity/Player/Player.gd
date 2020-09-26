@@ -5,7 +5,7 @@ export (NodePath) var		bullet_collector = "../BulletCollector"
 
 export (float) var	LERP_TO_SPEED_ANIM = 0.3
 export (float) var	LERP_TO_JUMP_ANIM = 0.1
-export (float) var	LERP_TO_FALL_ANIM = 1#0.3
+export (float) var	LERP_TO_FALL_ANIM = 0.2#0.3
 
 export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999
@@ -118,6 +118,11 @@ func get_input():
 	
 	if shoot and can_shoot():
 		if weapon.has_method("shoot"):
+			print (get_viewport().get_mouse_position().x )
+			if (get_viewport().get_mouse_position().x > OS.get_window_size().x / 2 && facing < 0 && !left):
+				set_facing(-facing)
+			elif (get_viewport().get_mouse_position().x < OS.get_window_size().x / 2 && facing > 0 && !right):
+				set_facing(-facing)
 			weapon.shoot(get_global_mouse_position())
 		else:
 			print("Warning: '", weapon.name, "' has no 'shoot' method!")
@@ -182,7 +187,7 @@ func _physics_process(_delta):
 	velocity.linear_interpolate(Vector2(0, velocity.y), FRICTION_LEVEL)
 	velocity = move_and_slide(velocity, Vector2(0, -1), false, 4, 0.80, false)
 
-	if (velocity.y < 0 && !is_on_floor() && jumps > 0 && !jumping):
+	if (velocity.y > 0 && !is_on_floor()) or (jumps > 0 && !jumping):
 		falling = true
 	else :
 		falling = false
