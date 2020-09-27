@@ -8,9 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "IEntity",
+"language": "GDScript",
+"path": "res://SourcesCPP/Entity/IEntity.gd"
+}, {
+"base": "IEntity",
+"class": "IMovingEntity",
+"language": "GDScript",
+"path": "res://SourcesCPP/Entity/IMovingEntity.gd"
+}, {
+"base": "IMovingEntity",
+"class": "IPlayerEntity",
+"language": "GDScript",
+"path": "res://SourcesCPP/Entity/IPlayerEntity.gd"
+}, {
+"base": "Node2D",
+"class": "IWeapon",
+"language": "GDScript",
+"path": "res://SourcesCPP/Weapon/IWeapon.gd"
+} ]
 _global_script_class_icons={
-
+"IEntity": "",
+"IMovingEntity": "",
+"IPlayerEntity": "",
+"IWeapon": ""
 }
 
 [application]
