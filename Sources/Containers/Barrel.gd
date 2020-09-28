@@ -17,7 +17,7 @@ func	damage(damager: Node2D, amount: int):
 		self.health = 0;
 		self.kill(damager)
 		
-func _process(delta):
+func _process(_delta):
 	modulate.r = 0.5 + (self.health / self.max_health) / 2
 	modulate.g = 0.5 + (self.health / self.max_health) / 2
 	modulate.b = 0.5 + (self.health / self.max_health) / 2
@@ -25,7 +25,7 @@ func _process(delta):
 func kill(killer: Node):
 	print("'", name, "' was killed by '", killer.name, "'!")
 	queue_free()
-	for i in range (loot_count) :
+	for _i in range (loot_count) :
 		var drop = loot.instance()
 		drop.position = position
 		print ("Dropping '", drop.name, "'!")

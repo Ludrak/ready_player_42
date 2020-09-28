@@ -37,7 +37,7 @@ func flip():
 	$PlayerBody.scale.x = -$PlayerBody.scale.x
 
 # TODO: Optimization
-func _process(delta):
+func _process(_delta):
 	target = null
 	state = IDLE
 	if enemy != null:
@@ -49,7 +49,7 @@ func _process(delta):
 					target = enemy
 					state = ATTACK
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Apply gravity
 	velocity.y += gravity
 

@@ -38,7 +38,7 @@ func _on_PickUpArea_body_entered(body):
 		print("Warning: '", body.name, "' doesn't have the '", attribute, "' attribute!")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 var	x = 0

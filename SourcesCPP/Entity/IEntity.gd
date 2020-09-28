@@ -27,7 +27,7 @@ func	damage(damager: Node2D, amount: int):
 
 ##	_ON_DAMAGE	<ABSTRACT METHOD>
 ##	- Event callback attached to damage function, called before damaging the entity.
-func	_on_damage(damager: Node2D, amount: int):
+func	_on_damage(_damager: Node2D, _amount: int):
 	pass
 
 
@@ -42,7 +42,7 @@ func	kill(killer: Node2D):
 
 ##	_ON_KILL	<ABSTRACT METHOD>
 ##	- Event callback attached to kill function, called before destruction of the entity.
-func	_on_kill(killer: Node2D):
+func	_on_kill(_killer: Node2D):
 	pass
 
 

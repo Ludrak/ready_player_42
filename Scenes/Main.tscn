@@ -81,6 +81,7 @@ script = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -634.681, 40.698 )
 script = ExtResource( 12 )
+bullet_collector = NodePath("../BulletCollector")
 
 [node name="Drone" parent="." instance=ExtResource( 9 )]
 position = Vector2( 2515.2, -156.275 )

@@ -6,26 +6,29 @@ extends IMovingEntity#"res://SourcesCPP/Entity/IMovingEntity.gd"
 
 class_name IPlayerEntity
 
-var					weapon = null setget set_weapon
-onready var			attributes = $Attributes
-onready var			animator = $AnimationTree
+export (PackedScene) var	weapon = null setget set_weapon
+onready var					attributes = $Attributes
+onready var					animator = $AnimationTree
 
-export (int) var	MAX_JUMP_TIME = 5
-export (int) var	JUMP_FORCE = 1200
-var					current_jump_time = 0
+export (int) var			MAX_JUMP_TIME = 5
+export (int) var			JUMP_FORCE = 1200
+var							current_jump_time = 0
 
-var					is_jumping = false
-var					is_falling = false
+var							is_jumping = false
+var							is_falling = false
 
-var					coins = 0
+var							coins = 0
 
-#                   Networking
-var					UUID = 0 # TODO
+#                           Networking
+var							UUID = 0 # TODO
 
-#					Animation
-export (float) var	LERP_TO_RUN_ANIM = 0.3
-export (float) var	LERP_TO_FALL_ANIM = 0.2
-export (float) var	LERP_TO_JUMP_ANIM = 0.1
+#					        Animation
+export (float) var			LERP_TO_RUN_ANIM = 0.3
+export (float) var			LERP_TO_FALL_ANIM = 0.2
+export (float) var			LERP_TO_JUMP_ANIM = 0.1
+
+export (NodePath) var		bullet_collector = "../BulletCollector"
+onready var					hand = $PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR
 
 
 ##	Setting basic class info
@@ -84,8 +87,24 @@ func	get_input():
 
 ##	SET_WEAPON
 ##	- Sets the current weapon of the entity
-func	set_weapon(new_weapon: IWeapon):
-	## TODO weapon script
+func	set_weapon(new_weapon: Node):
+	print("Picked up '", new_weapon.name, "'!")
+	if weapon != null:
+		print("Deleting '", weapon.name, "'!")
+		remove_child(weapon)
+		weapon.queue_free()
+	weapon = new_weapon
+	if weapon.get("enabled") != null:
+		weapon.enabled = true
+	else:
+		print("Warning: '", weapon.name, "' has no 'enabled' attribute!")
+		
+	weapon.position = hand.get_node("HandAttachement").position
+	weapon.rotation = hand.get_node("HandAttachement").rotation
+	weapon.scale = Vector2(2, 2)#hand.get_node("HandAttachement").scale
+	weapon.z_index = 1;
+	hand.add_child(weapon)
+	weapon.connect("fire_bullet", get_node(bullet_collector), "on_fire_bullet")
 	pass
 
 
@@ -108,7 +127,7 @@ func	jump():
 
 
 
-func	_process(delta):
+func	_process(_delta):
 	animate()
 
 

@@ -7,10 +7,10 @@ const	LERP_VAL = 5
 export (bool) var		player_inside = false
 var		alpha_ratio = 0
 
-func	_on_InsideArea_body_entered(body):
+func	_on_InsideArea_body_entered(_body):
 	player_inside = true
 	
-func	_on_InsideArea_body_exited(body):
+func	_on_InsideArea_body_exited(_body):
 	player_inside = false
 
 	

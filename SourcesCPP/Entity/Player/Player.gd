@@ -11,21 +11,30 @@ func	get_input():
 	var jump = Input.is_action_pressed('ui_up')
 	var right = Input.is_action_pressed('ui_right')
 	var left = Input.is_action_pressed('ui_left')
-	#var shoot = Input.is_action_pressed("ui_use_weapon")
+	var shoot = Input.is_action_pressed("ui_use_weapon")
 	
 	if (right && left):
 		pass
 	elif (right):
-		velocity.x = SPEED
+		set_facing(1)
+		set_velocity(Vector2(SPEED, velocity.y))
 	elif (left):
-		velocity.x = -SPEED
+		set_facing(-1)
+		set_velocity(Vector2(-SPEED, velocity.y))
 	
 	if (jump):
 		jump()
 	else:
 		is_jumping = false
+		
+	if (shoot && weapon.has_method("shoot")):
+		if (get_viewport().get_mouse_position().x > OS.get_window_size().x / 2 && facing < 0 && !left):
+			set_facing(-facing)
+		elif (get_viewport().get_mouse_position().x < OS.get_window_size().x / 2 && facing > 0 && !right):
+			set_facing(-facing)
+		weapon.shoot(get_global_mouse_position())
 
 
 
-func	_on_kill(_killer: Node2D):
+func	kill(_killer: Node2D):
 	position = spawn_point

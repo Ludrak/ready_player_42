@@ -67,8 +67,12 @@ func _physics_process(delta):
 	x_sin += delta * 3
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	$Smoke.amount = health / max_health * 50
+	if ($Smoke.amount == 0):
+		$Smoke.emitting = false
+	else:
+		$Smoke.emitting = true
 	if (body_target && body_has_grabbed):
 		if (Input.is_action_just_pressed("ui_select")):
 			body_target.grab_drone(null)
