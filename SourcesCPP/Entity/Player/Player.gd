@@ -27,7 +27,7 @@ func	get_input():
 	else:
 		is_jumping = false
 		
-	if (shoot && weapon.has_method("shoot")):
+	if (shoot && weapon && weapon.has_method("shoot")):
 		if (get_viewport().get_mouse_position().x > OS.get_window_size().x / 2 && facing < 0 && !left):
 			set_facing(-facing)
 		elif (get_viewport().get_mouse_position().x < OS.get_window_size().x / 2 && facing > 0 && !right):

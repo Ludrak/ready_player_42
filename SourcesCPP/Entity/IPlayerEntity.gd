@@ -10,7 +10,7 @@ export (PackedScene) var	weapon = null setget set_weapon
 onready var					attributes = $Attributes
 onready var					animator = $AnimationTree
 
-export (int) var			MAX_JUMP_TIME = 5
+export (int) var			MAX_JUMP_TIME = 4
 export (int) var			JUMP_FORCE = 1200
 var							current_jump_time = 0
 
@@ -30,6 +30,8 @@ export (float) var			LERP_TO_JUMP_ANIM = 0.1
 export (NodePath) var		bullet_collector = "../BulletCollector"
 onready var					hand = $PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom/HandR
 
+var							is_grabbing_vehicle = false
+var							grabbed_vehicle = null setget set_grab_vehicle
 
 ##	Setting basic class info
 func	_ready():
@@ -44,6 +46,9 @@ func	_ready():
 ##	ANIMATE <OVERRIDE>
 ##	- Overriden from IPlayerEntity
 func animate():
+	if (is_grabbing_vehicle):
+		grabbed_vehicle._on_animate_body()
+		return
 	if (!is_jumping && !is_falling):
 		#not jumping and fall
 		animator.set("parameters/Is_Jumping/add_amount", 0)
@@ -71,10 +76,10 @@ func animate():
 		pass
 	else :
 		#not falling
-		$AnimationTree.set("parameters/Is_Falling/add_amount", 0)
+		animator.set("parameters/Is_Falling/add_amount", 0)
 		#jumping
-		var	lerp_to = lerp ($AnimationTree.get("parameters/Is_Jumping/add_amount"), 1, LERP_TO_JUMP_ANIM)
-		$AnimationTree.set("parameters/Is_Jumping/add_amount", lerp_to)
+		var	lerp_to = lerp (animator.get("parameters/Is_Jumping/add_amount"), 1, LERP_TO_JUMP_ANIM)
+		animator.set("parameters/Is_Jumping/add_amount", lerp_to)
 
 
 
@@ -123,6 +128,17 @@ func	can_jump():
 func	jump():
 	if (can_jump()):
 		is_jumping = true
+	pass
+
+
+
+##
+##
+func	set_grab_vehicle(vehicle: IVehicle):
+	grabbed_vehicle = vehicle
+	is_grabbing_vehicle = (vehicle != null)
+	set_physics_process(is_grabbing_vehicle)
+	HAS_GRAVITY = is_grabbing_vehicle
 	pass
 
 

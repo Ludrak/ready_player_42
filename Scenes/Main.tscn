@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sources/World/BulletCollector.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game Objects/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/Game Objects/PowerUps/WeaponPowerUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Game Objects/Enemies/DeadlyArea.tscn" type="PackedScene" id=11]
 [ext_resource path="res://SourcesCPP/Entity/Player/Player.gd" type="Script" id=12]
+[ext_resource path="res://SourcesCPP/Entity/Vehicle/DroneVehicle.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9096.18, 218.017 )
@@ -81,6 +82,7 @@ script = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -634.681, 40.698 )
 script = ExtResource( 12 )
+SPEED = 750
 bullet_collector = NodePath("../BulletCollector")
 
 [node name="Drone" parent="." instance=ExtResource( 9 )]
@@ -88,3 +90,5 @@ position = Vector2( 2515.2, -156.275 )
 
 [node name="Drone2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 489.8, -397.418 )
+script = ExtResource( 13 )
+slot = Vector2( 0, 120 )
