@@ -8,7 +8,7 @@
 ##
 ##
 
-extends IEntity
+extends IEntity#"res://SourcesCPP/Entity/IEntity.gd"
 
 class_name IMovingEntity
 
@@ -19,6 +19,9 @@ export (bool) var	HAS_GRAVITY = true setget set_gravity
 export (float) var	MAX_SLOPE_ANGLE = 0.80
 export (bool) var	INFINITE_INERTIA = false
 export (bool) var	STICK_ON_SLOPE = false
+
+export (float) var	FLOOR_FRICTION = 0
+export (float) var	AIR_FRICTION = 0
 
 var					velocity = Vector2.ZERO setget set_velocity
 var					direction = Vector2.ZERO setget set_direction
@@ -52,4 +55,13 @@ func	flip_v():
 func	_physics_process(delta):
 	if (HAS_GRAVITY && !is_on_floor()):
 		velocity.y += GRAVITY
+	if (direction.x < 0 && scale.x > 0):
+		flip_v()
+	elif (direction.x > 0 && scale.x < 0):
+		flip_v()
 	velocity = move_and_slide(velocity, Vector2(0, -1), STICK_ON_SLOPE, 4, MAX_SLOPE_ANGLE, INFINITE_INERTIA)
+	if (is_on_floor() or !is_on_wall()):
+		velocity.x /= 1 + FLOOR_FRICTION
+	elif(!is_on_wall()):
+		velocity.x /= 1 + AIR_FRICTION
+		velocity.y /= 1 + AIR_FRICTION

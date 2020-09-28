@@ -9,7 +9,7 @@ export (float) var	LERP_TO_FALL_ANIM = 0.2#0.3
 
 export (int) var	LERP_TO_FULLSPEED = 0.5
 export (int) var	FRICTION_LEVEL = 0.9999
-export (int) var	SPEED =  700 # 23000
+export (int) var	SPEED =  750 # 23000
 
 export (int) var	jump_speed = 1200
 export (int) var	gravity = 98
@@ -156,7 +156,7 @@ func animate():
 			
 		##	IS RUNNING
 		##
-		if (self.velocity.length() > 0.1) :
+		if (self.velocity.length() > 100) :
 			var	lerp_to = lerp ($AnimationTree.get("parameters/Idle_Run_Blend/blend_amount"), 0, LERP_TO_SPEED_ANIM)
 			$AnimationTree.set("parameters/Idle_Run_Blend/blend_amount", lerp_to)
 		else :

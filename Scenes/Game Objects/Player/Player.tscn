@@ -3354,15 +3354,15 @@ animation = "run"
 
 [sub_resource type="AnimationNodeTimeScale" id=27]
 
-[sub_resource type="AnimationNodeTimeScale" id=31]
-
 [sub_resource type="AnimationNodeTimeScale" id=28]
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeTimeScale" id=29]
+
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "grab"
 
-[sub_resource type="AnimationNodeBlendTree" id=30]
-graph_offset = Vector2( -710.09, 398.917 )
+[sub_resource type="AnimationNodeBlendTree" id=31]
+graph_offset = Vector2( 0, 381 )
 nodes/Animation/node = SubResource( 15 )
 nodes/Animation/position = Vector2( -220.556, 737.167 )
 nodes/Has_Weapon_Idle/node = SubResource( 16 )
@@ -3387,16 +3387,16 @@ nodes/Run/node = SubResource( 26 )
 nodes/Run/position = Vector2( -660, -300 )
 nodes/Run-Weapon/node = SubResource( 25 )
 nodes/Run-Weapon/position = Vector2( -660, -100 )
-nodes/TimeScale/node = SubResource( 28 )
+nodes/TimeScale/node = SubResource( 29 )
 nodes/TimeScale/position = Vector2( -440, -300 )
 "nodes/TimeScale 2/node" = SubResource( 27 )
 "nodes/TimeScale 2/position" = Vector2( -440, -120 )
-"nodes/TimeScale 3/node" = SubResource( 31 )
+"nodes/TimeScale 3/node" = SubResource( 28 )
 "nodes/TimeScale 3/position" = Vector2( 600, 580 )
-"nodes/grab drone/node" = SubResource( 29 )
+"nodes/grab drone/node" = SubResource( 30 )
 "nodes/grab drone/position" = Vector2( 420, 580 )
 nodes/output/position = Vector2( 1160, 460 )
-node_connections = [ "output", 0, "Is_Grabbing_Drone", "Has_Weapon_Idle", 0, "Idle", "Has_Weapon_Idle", 1, "Idle-Weapon", "Has_Weapon_Run", 0, "TimeScale", "Has_Weapon_Run", 1, "TimeScale 2", "Idle_Run_Blend", 0, "Has_Weapon_Run", "Idle_Run_Blend", 1, "Has_Weapon_Idle", "Is_Falling", 0, "Jump", "Is_Falling", 1, "Animation", "Is_Jumping", 0, "Idle_Run_Blend", "Is_Jumping", 1, "Is_Falling", "TimeScale", 0, "Run", "TimeScale 2", 0, "Run-Weapon", "Is_Grabbing_Drone", 0, "Is_Jumping", "Is_Grabbing_Drone", 1, "TimeScale 3", "TimeScale 3", 0, "grab drone" ]
+node_connections = [ "output", 0, "Is_Grabbing_Drone", "Has_Weapon_Run", 0, "TimeScale", "Has_Weapon_Run", 1, "TimeScale 2", "Has_Weapon_Idle", 0, "Idle", "Has_Weapon_Idle", 1, "Idle-Weapon", "Idle_Run_Blend", 0, "Has_Weapon_Run", "Idle_Run_Blend", 1, "Has_Weapon_Idle", "Is_Falling", 0, "Jump", "Is_Falling", 1, "Animation", "Is_Grabbing_Drone", 0, "Is_Jumping", "Is_Grabbing_Drone", 1, "TimeScale 3", "Is_Jumping", 0, "Idle_Run_Blend", "Is_Jumping", 1, "Is_Falling", "TimeScale", 0, "Run", "TimeScale 2", 0, "Run-Weapon", "TimeScale 3", 0, "grab drone" ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2147483650
@@ -3453,23 +3453,22 @@ color_ramp = SubResource( 4 )
 scale = Vector2( 0.226, 0.226 )
 
 [node name="Hip" type="Bone2D" parent="PlayerBody/Skeleton"]
-position = Vector2( -55.6032, 54.7171 )
-rotation = 0.115212
+position = Vector2( 12.7089, 54.7171 )
+rotation = 0.102338
 rest = Transform2D( 0.994768, 0.102159, -0.102159, 0.994768, 12.7089, 54.7171 )
 
 [node name="Chest" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
-position = Vector2( 14.127, -45.5238 )
-rotation = 0.212528
+position = Vector2( 11.4587, -66.2527 )
 rest = Transform2D( 1, 0, 0, 1, 8.33921, -61.3226 )
 
 [node name="Head" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -27.3804, -256.018 )
-rotation = 0.750279
+rotation = 0.2378
 rest = Transform2D( 0.964496, 0.264098, -0.264098, 0.964496, -27.3804, -256.018 )
 
 [node name="ArmR_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( -133.8, -130.33 )
-rotation = 0.49201
+rotation = 0.0687487
 rest = Transform2D( 1, 0, 0, 1, -133.8, -130.33 )
 __meta__ = {
 "_edit_bone_": true,
@@ -3478,7 +3477,7 @@ __meta__ = {
 
 [node name="ArmR_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top"]
 position = Vector2( 6.92392, 127.532 )
-rotation = -0.757095
+rotation = -0.0596794
 rest = Transform2D( 1, 0, 0, 1, 6.92392, 127.532 )
 __meta__ = {
 "_edit_bone_": true
@@ -3486,7 +3485,7 @@ __meta__ = {
 
 [node name="HandR" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmR_top/ArmR_bottom"]
 position = Vector2( 25.4508, 112.086 )
-rotation = 1.08631
+rotation = 1.27235
 rest = Transform2D( 0.29404, 0.955793, -0.955793, 0.29404, 25.4508, 112.086 )
 __meta__ = {
 "_edit_bone_": true
@@ -3497,7 +3496,7 @@ position = Vector2( 15.952, -1.60078 )
 
 [node name="ArmL_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest"]
 position = Vector2( 47.1862, -139.225 )
-rotation = -2.85444
+rotation = -0.111525
 rest = Transform2D( 1, 0, 0, 1, 47.1862, -139.225 )
 __meta__ = {
 "_edit_bone_": true,
@@ -3506,7 +3505,7 @@ __meta__ = {
 
 [node name="ArmL_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmL_top"]
 position = Vector2( 19.2494, 124.915 )
-rotation = -0.695457
+rotation = 0.189535
 rest = Transform2D( 1, 0, 0, 1, 19.2494, 124.915 )
 __meta__ = {
 "_edit_bone_": true
@@ -3514,7 +3513,7 @@ __meta__ = {
 
 [node name="HandL" type="Bone2D" parent="PlayerBody/Skeleton/Hip/Chest/ArmL_top/ArmL_bottom"]
 position = Vector2( 0.905426, 96.4659 )
-rotation = 1.70551
+rotation = 1.66189
 rest = Transform2D( -0.0909624, 0.995854, -0.995854, -0.0909624, 0.905426, 96.4659 )
 __meta__ = {
 "_edit_bone_": true
@@ -3522,7 +3521,6 @@ __meta__ = {
 
 [node name="LegR_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
 position = Vector2( -23.0588, 21.1644 )
-rotation = -0.114809
 rest = Transform2D( 1, 0, 0, 1, -23.0588, 21.1644 )
 __meta__ = {
 "_edit_bone_": true,
@@ -3531,7 +3529,6 @@ __meta__ = {
 
 [node name="LegR_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegR_top"]
 position = Vector2( 4.12431, 137.662 )
-rotation = 0.690487
 rest = Transform2D( 1, 0, 0, 1, 4.12431, 137.662 )
 __meta__ = {
 "_edit_bone_": true
@@ -3539,15 +3536,15 @@ __meta__ = {
 
 [node name="FootR" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegR_top/LegR_bottom"]
 position = Vector2( 7.19505, 96.0006 )
-rotation = 0.523416
+rotation = 0.389406
 rest = Transform2D( 0.925135, 0.379638, -0.379638, 0.925135, 7.19505, 96.0006 )
 __meta__ = {
 "_edit_bone_": true
 }
 
 [node name="LegL_top" type="Bone2D" parent="PlayerBody/Skeleton/Hip"]
-position = Vector2( 35.4348, 18.9762 )
-rotation = 0.146281
+position = Vector2( 34.7577, 13.139 )
+rotation = 0.285079
 rest = Transform2D( 0.95964, 0.281233, -0.281233, 0.95964, 34.7577, 13.139 )
 __meta__ = {
 "_edit_bone_": true,
@@ -3556,7 +3553,7 @@ __meta__ = {
 
 [node name="LegL_bottom" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegL_top"]
 position = Vector2( 69.7693, 119.355 )
-rotation = 0.269592
+rotation = 0.0098302
 rest = Transform2D( 0.999952, 0.00983005, -0.00983005, 0.999952, 69.7693, 119.355 )
 __meta__ = {
 "_edit_bone_": true
@@ -3564,7 +3561,7 @@ __meta__ = {
 
 [node name="FootL" type="Bone2D" parent="PlayerBody/Skeleton/Hip/LegL_top/LegL_bottom"]
 position = Vector2( 35.6917, 90.716 )
-rotation = 0.0897077
+rotation = 0.137706
 rest = Transform2D( 0.990534, 0.137271, -0.137271, 0.990534, 35.6917, 90.716 )
 __meta__ = {
 "_edit_bone_": true
@@ -3696,14 +3693,14 @@ anims/run = SubResource( 12 )
 anims/run_new = SubResource( 14 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 31 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Has_Weapon_Idle/add_amount = 0.0
 parameters/Has_Weapon_Run/add_amount = 0.0
 parameters/Idle_Run_Blend/blend_amount = 1.0
 parameters/Is_Falling/add_amount = 0.0
-parameters/Is_Grabbing_Drone/add_amount = 0.98
+parameters/Is_Grabbing_Drone/add_amount = 0.0
 parameters/Is_Jumping/add_amount = 0.0
 parameters/TimeScale/scale = 1.5
 "parameters/TimeScale 2/scale" = 1.5

@@ -70,4 +70,4 @@ func	set_shaking(new_shaking : bool):
 		
 func	camera_shake(amount : int):
 	print ("shaking")
-	offset = Vector2(rand_range(-amount/2, amount/2), rand_range(-amount/2, amount/2));
+	offset = Vector2(rand_range(-amount/2.0, amount/2.0), rand_range(-amount/2.0, amount/2.0));

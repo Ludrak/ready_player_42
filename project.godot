@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "IWeapon",
 "language": "GDScript",
 "path": "res://SourcesCPP/Weapon/IWeapon.gd"
+}, {
+"base": "IPlayerEntity",
+"class": "Player",
+"language": "GDScript",
+"path": "res://SourcesCPP/Entity/Player/Player.gd"
 } ]
 _global_script_class_icons={
 "IEntity": "",
 "IMovingEntity": "",
 "IPlayerEntity": "",
-"IWeapon": ""
+"IWeapon": "",
+"Player": ""
 }
 
 [application]
